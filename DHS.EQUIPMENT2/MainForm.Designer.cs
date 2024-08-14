@@ -417,7 +417,7 @@ namespace DHS.EQUIPMENT2
             this.Controls.Add(this.pnlMainMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "MainForm";
-            this.Text = "CHARGING - DISCHARGING 2024 07 23";
+            this.Text = "CHARGING - DISCHARGING DCIR 2024 08 14";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.pnlMainMenu.ResumeLayout(false);
