@@ -65,18 +65,21 @@ namespace DHS.EQUIPMENT2
         private void InitializeUsercontrol()
         {
             /// DCIR Mode
+            /// 
             dCIRControl = DCIRControl.GetInstance();
             dCIRControl.Dock = DockStyle.Fill;
             dCIRControl.Parent = pnlMainBody;
             dCIRControl.Visible = false;
 
             /// Manual Mode
+            /// 
             manualModeControl = ManualModeControl.GetInstance();
             manualModeControl.Dock = DockStyle.Fill;
             manualModeControl.Parent = pnlMainBody;
             manualModeControl.Visible = false;
 
             /// Calibration Mode
+            /// 
             calibrationControl = CalibrationControl.GetInstance();
             calibrationControl.Dock = DockStyle.Fill;
             calibrationControl.Parent = pnlMainBody;
