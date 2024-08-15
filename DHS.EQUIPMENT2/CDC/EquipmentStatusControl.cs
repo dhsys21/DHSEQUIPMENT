@@ -28,11 +28,21 @@ namespace DHS.EQUIPMENT2.CDC
             InitializeComponent();
 
             makeGridView(gvEquipStatus, _Constant.ControllerCount);
+            SetColumnHeaderColor(gvEquipStatus, Color.DarkGray);
+            //GridView view = gvEquipStatus.MainView as GridView;
+            //view.Columns[0].AppearanceHeader.BackColor = Color.DarkGray;
+            
         }
 
         #region Make Grid Control - Dev Express
         /// row color
         ///  column header color
+        private void SetColumnHeaderColor(GridControl gc, Color clr)
+        {
+            GridView view = gc.MainView as GridView;
+            for(int nIndex = 0; nIndex < view.Columns.Count; nIndex++)
+                view.Columns[nIndex].AppearanceHeader.BackColor = clr;
+        }
         public void setcolumnheadercolor(GridControl gc, GridView gridView)
         {
             gridView.CustomDrawColumnHeader += (s, e) => {
@@ -63,7 +73,15 @@ namespace DHS.EQUIPMENT2.CDC
 
             gc.DataSource = dt;
         }
-        
+
         #endregion Make Grid View
+
+        private void gridView1_RowCellStyle(object sender, RowCellStyleEventArgs e)
+        {
+            GridView view = sender as GridView;
+            if (e.Column != view.Columns[0])
+                return;
+            e.Appearance.BackColor = _Constant.ColorReady;
+        }
     }
 }
