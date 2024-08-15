@@ -24,8 +24,6 @@ namespace DHS.EQUIPMENT2
         MariaDB mariadb = null;
         MariaDBConfig mariaConfig;
 
-        //ARGERForm[] nForm = new CHARGERForm[_Constant.ControllerCount];
-        CDCForm[] nForm = new CDCForm[_Constant.ControllerCount];
         TRAYINFO[] nTrayInfo = new TRAYINFO[_Constant.ControllerCount];
         ControllerSenData[] nSenData = new ControllerSenData[_Constant.ControllerCount];
         KeysightCalData[] nCalData = new KeysightCalData[_Constant.ControllerCount];
@@ -102,8 +100,6 @@ namespace DHS.EQUIPMENT2
             //* Charger Form / TrayInfo / SEN
             for(int nIndex = 0; nIndex < _Constant.ControllerCount; nIndex++)
             {
-                //nForm[nIndex] = CHARGERForm.GetInstance(nIndex);
-                nForm[nIndex] = CDCForm.GetInstance(nIndex);
                 nTrayInfo[nIndex] = TRAYINFO.GetInstance(nIndex);
 
                 nCalData[nIndex] = KeysightCalData.GetInstance(nIndex);

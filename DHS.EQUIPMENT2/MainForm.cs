@@ -21,9 +21,9 @@ namespace DHS.EQUIPMENT2
         private MeasureInfoControl measureInfoControl;
         private MeasureChartControl measureChartControl;
         private CalibrationControl calibrationControl;
+        private EquipmentStatusControl equipmentStatusControl;
         Util util = new Util();
-        //public CHARGERForm[] nForm = new CHARGERForm[_Constant.ControllerCount];
-        public CDCForm[] nForm = new CDCForm[_Constant.ControllerCount];
+
         private CDProcess _CDProcess = null;
         private MeasureInfoForm measureInfoForm = null;
         private MeasureChartForm measureChartForm = null;
@@ -53,9 +53,6 @@ namespace DHS.EQUIPMENT2
             //AddTitlePanel(equipType);
             //pnlTitle.Dock = DockStyle.Top;
 
-            //* CDC 추가
-            AddEquipPanel(equipType, _Constant.ControllerCount);
-
             //* MariaDB
             mariadb = MariaDB.GetInstance();
             mariadb.OnDBConnection += _MariaDB_Connection;
@@ -64,6 +61,13 @@ namespace DHS.EQUIPMENT2
 
         private void InitializeUsercontrol()
         {
+            /// Equipment Status 
+            /// 
+            equipmentStatusControl = EquipmentStatusControl.GetInstance();
+            equipmentStatusControl.Dock = DockStyle.Fill;
+            equipmentStatusControl.Parent = pnlMainBody;
+            equipmentStatusControl.Visible = false;
+
             /// DCIR Mode
             /// 
             dCIRControl = DCIRControl.GetInstance();
@@ -109,7 +113,6 @@ namespace DHS.EQUIPMENT2
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            configForm = ConfigForm.GetInstance();
             mariadbForm = new MariadbForm();
 
             _CDProcess = CDProcess.GetInstance();
@@ -120,12 +123,6 @@ namespace DHS.EQUIPMENT2
 
             for (int nIndex = 0; nIndex < 12; nIndex++)
                 ParentPanel[nIndex] = new DoubleBufferedPanel();
-
-            //* Measure Info Form 추가
-            measureInfoForm = MeasureInfoForm.GetInstance();
-
-            //* Measure Chart Form 추가
-            measureChartForm = MeasureChartForm.GetInstance();
         }
 
         private void _DbsClient_Connection(bool isconnected)
@@ -189,7 +186,8 @@ namespace DHS.EQUIPMENT2
         }
         private void radbtn_MANU_Click(object sender, EventArgs e)
         {
-            SelectTabPage(enumTabType.EQUIPSTATUS);
+            SetControlVisible(false);
+            equipmentStatusControl.Visible = true;
         }
         private void SetControlVisible(bool bVisible)
         {
@@ -199,6 +197,7 @@ namespace DHS.EQUIPMENT2
             configControl.Visible = bVisible;
             measureChartControl.Visible = bVisible;
             measureInfoControl.Visible = bVisible;
+            equipmentStatusControl.Visible = bVisible;
         }
         private void SelectTabPage(enumTabType enumType)
         {

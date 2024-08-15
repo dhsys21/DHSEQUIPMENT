@@ -1,17 +1,16 @@
-﻿
-namespace DHS.EQUIPMENT2.CDC
+﻿namespace DHS.EQUIPMENT2.CDC
 {
-    partial class CDCStatusForm
+    partial class EquipmentStatusControl
     {
-        /// <summary>
-        /// Required designer variable.
+        /// <summary> 
+        /// 필수 디자이너 변수입니다.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
+        /// <summary> 
+        /// 사용 중인 모든 리소스를 정리합니다.
         /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        /// <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -21,11 +20,11 @@ namespace DHS.EQUIPMENT2.CDC
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+        #region 구성 요소 디자이너에서 생성한 코드
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
+        /// <summary> 
+        /// 디자이너 지원에 필요한 메서드입니다. 
+        /// 이 메서드의 내용을 코드 편집기로 수정하지 마세요.
         /// </summary>
         private void InitializeComponent()
         {
@@ -37,9 +36,7 @@ namespace DHS.EQUIPMENT2.CDC
             this.radButton20 = new Telerik.WinControls.UI.RadButton();
             this.radButton21 = new Telerik.WinControls.UI.RadButton();
             this.pBase = new System.Windows.Forms.Panel();
-            this.gvLeft = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gvEquipStatus = new DevExpress.XtraGrid.GridControl();
             this.pnlSubMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radButton13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton17)).BeginInit();
@@ -48,9 +45,7 @@ namespace DHS.EQUIPMENT2.CDC
             ((System.ComponentModel.ISupportInitialize)(this.radButton20)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton21)).BeginInit();
             this.pBase.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gvLeft)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvEquipStatus)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlSubMenu
@@ -66,8 +61,8 @@ namespace DHS.EQUIPMENT2.CDC
             this.pnlSubMenu.Location = new System.Drawing.Point(0, 0);
             this.pnlSubMenu.Name = "pnlSubMenu";
             this.pnlSubMenu.Padding = new System.Windows.Forms.Padding(3, 3, 3, 5);
-            this.pnlSubMenu.Size = new System.Drawing.Size(1904, 74);
-            this.pnlSubMenu.TabIndex = 12;
+            this.pnlSubMenu.Size = new System.Drawing.Size(1900, 74);
+            this.pnlSubMenu.TabIndex = 13;
             // 
             // radButton13
             // 
@@ -180,56 +175,30 @@ namespace DHS.EQUIPMENT2.CDC
             // pBase
             // 
             this.pBase.BackColor = System.Drawing.Color.Black;
-            this.pBase.Controls.Add(this.gvLeft);
-            this.pBase.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pBase.Location = new System.Drawing.Point(0, 80);
+            this.pBase.Controls.Add(this.gvEquipStatus);
+            this.pBase.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pBase.Location = new System.Drawing.Point(0, 74);
             this.pBase.Name = "pBase";
             this.pBase.Padding = new System.Windows.Forms.Padding(2);
-            this.pBase.Size = new System.Drawing.Size(1904, 850);
-            this.pBase.TabIndex = 66;
+            this.pBase.Size = new System.Drawing.Size(1900, 756);
+            this.pBase.TabIndex = 67;
             // 
-            // gvLeft
+            // gvEquipStatus
             // 
-            this.gvLeft.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gvLeft.Location = new System.Drawing.Point(2, 2);
-            this.gvLeft.MainView = this.gridView1;
-            this.gvLeft.Name = "gvLeft";
-            this.gvLeft.Size = new System.Drawing.Size(1900, 846);
-            this.gvLeft.TabIndex = 2;
-            this.gvLeft.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1,
-            this.gridView2});
+            this.gvEquipStatus.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gvEquipStatus.Location = new System.Drawing.Point(2, 2);
+            this.gvEquipStatus.Name = "gvEquipStatus";
+            this.gvEquipStatus.Size = new System.Drawing.Size(1896, 752);
+            this.gvEquipStatus.TabIndex = 2;
             // 
-            // gridView1
+            // EquipmentStatusControl
             // 
-            this.gridView1.Appearance.HeaderPanel.BackColor = System.Drawing.Color.Transparent;
-            this.gridView1.Appearance.HeaderPanel.Options.UseBackColor = true;
-            this.gridView1.GridControl = this.gvLeft;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsBehavior.AllowPartialRedrawOnScrolling = false;
-            this.gridView1.OptionsView.AllowCellMerge = true;
-            this.gridView1.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.True;
-            this.gridView1.OptionsView.RowAutoHeight = true;
-            this.gridView1.OptionsView.ShowGroupExpandCollapseButtons = false;
-            this.gridView1.OptionsView.ShowGroupPanel = false;
-            this.gridView1.OptionsView.ShowIndicator = false;
-            // 
-            // gridView2
-            // 
-            this.gridView2.GridControl = this.gvLeft;
-            this.gridView2.Name = "gridView2";
-            // 
-            // CDCStatusForm
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1904, 930);
             this.Controls.Add(this.pBase);
             this.Controls.Add(this.pnlSubMenu);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "CDCStatusForm";
-            this.Text = "CDCStatusForm";
+            this.Name = "EquipmentStatusControl";
+            this.Size = new System.Drawing.Size(1900, 830);
             this.pnlSubMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radButton13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton17)).EndInit();
@@ -238,9 +207,7 @@ namespace DHS.EQUIPMENT2.CDC
             ((System.ComponentModel.ISupportInitialize)(this.radButton20)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton21)).EndInit();
             this.pBase.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gvLeft)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvEquipStatus)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -255,8 +222,6 @@ namespace DHS.EQUIPMENT2.CDC
         private Telerik.WinControls.UI.RadButton radButton20;
         private Telerik.WinControls.UI.RadButton radButton21;
         private System.Windows.Forms.Panel pBase;
-        private DevExpress.XtraGrid.GridControl gvLeft;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
+        private DevExpress.XtraGrid.GridControl gvEquipStatus;
     }
 }

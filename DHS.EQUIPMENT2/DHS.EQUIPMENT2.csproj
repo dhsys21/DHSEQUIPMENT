@@ -162,6 +162,12 @@
     <Compile Include="CDC\DCIRForm.Designer.cs">
       <DependentUpon>DCIRForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CDC\EquipmentStatusControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CDC\EquipmentStatusControl.Designer.cs">
+      <DependentUpon>EquipmentStatusControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="CDC\ManualModeControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -270,6 +276,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CDC\DCIRForm.resx">
       <DependentUpon>DCIRForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CDC\EquipmentStatusControl.resx">
+      <DependentUpon>EquipmentStatusControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CDC\ManualModeControl.resx">
       <DependentUpon>ManualModeControl.cs</DependentUpon>
