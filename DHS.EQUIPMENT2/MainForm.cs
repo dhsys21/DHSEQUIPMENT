@@ -27,9 +27,6 @@ namespace DHS.EQUIPMENT2
         private CDProcess _CDProcess = null;
         private MeasureInfoForm measureInfoForm = null;
         private MeasureChartForm measureChartForm = null;
-        private ManualModeForm manualForm = null;
-        private CalibrationForm caliForm = null;
-        private DCIRForm dcirForm = null;
         ConfigForm configForm;
         MariadbForm mariadbForm;
         MariaDB mariadb = null;

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
             this.pnlSubMenu = new System.Windows.Forms.Panel();
             this.radButton13 = new Telerik.WinControls.UI.RadButton();
             this.radButton17 = new Telerik.WinControls.UI.RadButton();
@@ -37,6 +38,7 @@
             this.radButton21 = new Telerik.WinControls.UI.RadButton();
             this.pBase = new System.Windows.Forms.Panel();
             this.gvEquipStatus = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.pnlSubMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radButton13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton17)).BeginInit();
@@ -46,6 +48,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radButton21)).BeginInit();
             this.pBase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvEquipStatus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlSubMenu
@@ -187,9 +190,26 @@
             // 
             this.gvEquipStatus.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gvEquipStatus.Location = new System.Drawing.Point(2, 2);
+            this.gvEquipStatus.MainView = this.gridView1;
             this.gvEquipStatus.Name = "gvEquipStatus";
             this.gvEquipStatus.Size = new System.Drawing.Size(1896, 752);
             this.gvEquipStatus.TabIndex = 2;
+            this.gvEquipStatus.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.Appearance.HeaderPanel.BackColor = System.Drawing.Color.Black;
+            this.gridView1.Appearance.HeaderPanel.Options.UseBackColor = true;
+            gridFormatRule1.Name = "Format0";
+            gridFormatRule1.Rule = null;
+            this.gridView1.FormatRules.Add(gridFormatRule1);
+            this.gridView1.GridControl = this.gvEquipStatus;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsCustomization.AllowSort = false;
+            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView1.OptionsView.EnableAppearanceOddRow = true;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
             // EquipmentStatusControl
             // 
@@ -208,6 +228,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radButton21)).EndInit();
             this.pBase.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gvEquipStatus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -223,5 +244,6 @@
         private Telerik.WinControls.UI.RadButton radButton21;
         private System.Windows.Forms.Panel pBase;
         private DevExpress.XtraGrid.GridControl gvEquipStatus;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
     }
 }

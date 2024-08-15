@@ -144,23 +144,11 @@
     <Compile Include="CDC\CalibrationControl.Designer.cs">
       <DependentUpon>CalibrationControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="CDC\CalibrationForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CDC\CalibrationForm.Designer.cs">
-      <DependentUpon>CalibrationForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="CDC\DCIRControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="CDC\DCIRControl.Designer.cs">
       <DependentUpon>DCIRControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CDC\DCIRForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CDC\DCIRForm.Designer.cs">
-      <DependentUpon>DCIRForm.cs</DependentUpon>
     </Compile>
     <Compile Include="CDC\EquipmentStatusControl.cs">
       <SubType>UserControl</SubType>
@@ -200,18 +188,6 @@
       <DependentUpon>CDCStatusForm.cs</DependentUpon>
     </Compile>
     <Compile Include="CDProcess.cs" />
-    <Compile Include="CDC\CHARGERForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CDC\CHARGERForm.Designer.cs">
-      <DependentUpon>CHARGERForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CDC\ManualModeForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CDC\ManualModeForm.Designer.cs">
-      <DependentUpon>ManualModeForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="CDC\MeasureInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -262,29 +238,17 @@
     <EmbeddedResource Include="CDC\CalibrationControl.resx">
       <DependentUpon>CalibrationControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CDC\CalibrationForm.resx">
-      <DependentUpon>CalibrationForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="CDC\CDCStatusForm.resx">
       <DependentUpon>CDCStatusForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CDC\CHARGERForm.resx">
-      <DependentUpon>CHARGERForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="CDC\DCIRControl.resx">
       <DependentUpon>DCIRControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CDC\DCIRForm.resx">
-      <DependentUpon>DCIRForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CDC\EquipmentStatusControl.resx">
       <DependentUpon>EquipmentStatusControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CDC\ManualModeControl.resx">
       <DependentUpon>ManualModeControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CDC\ManualModeForm.resx">
-      <DependentUpon>ManualModeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CDC\MeasureChartControl.resx">
       <DependentUpon>MeasureChartControl.cs</DependentUpon>

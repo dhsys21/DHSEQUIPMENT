@@ -70,7 +70,7 @@ namespace DHS.EQUIPMENT2
             _tmrGetMon = new Timer();
             _tmrGetMon.Interval = 1000;
             _tmrGetMon.Tick += new EventHandler(GetMonDataTimer_TickAsync);
-            _tmrGetMon.Enabled = true;
+            //_tmrGetMon.Enabled = true;
         }
         public void SetStage(int stageno)
         {
