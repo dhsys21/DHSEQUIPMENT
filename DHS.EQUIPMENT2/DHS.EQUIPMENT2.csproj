@@ -150,12 +150,6 @@
     <Compile Include="CDC\CalibrationForm.Designer.cs">
       <DependentUpon>CalibrationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CDC\CDCForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CDC\CDCForm.Designer.cs">
-      <DependentUpon>CDCForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="CDC\DCIRControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -264,9 +258,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CDC\CalibrationForm.resx">
       <DependentUpon>CalibrationForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CDC\CDCForm.resx">
-      <DependentUpon>CDCForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CDC\CDCStatusForm.resx">
       <DependentUpon>CDCStatusForm.cs</DependentUpon>

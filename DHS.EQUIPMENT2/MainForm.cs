@@ -139,61 +139,6 @@ namespace DHS.EQUIPMENT2
             else if (isconnected == false) lblDBConnection.BackColor = Color.Red;
         }
 
-        #region Form to Panel
-        //private void AddTitlePanel(enumEquipType equipType)
-        //{
-        //    TITLE_CD titleCD = new TITLE_CD();
-
-        //    Panel pnlTitleSub = new DoubleBufferedPanel();
-        //    pnlTitleSub.Dock = DockStyle.Top;
-
-        //    util.loadFormIntoPanel(titleCD, pnlTitleSub);
-
-        //    pnlTitle.Controls.Add(pnlTitleSub);
-        //}
-
-        private void AddEquipPanel(enumEquipType equipType, int frmCount)
-        {
-            Panel[] nPanel = new DoubleBufferedPanel[frmCount];
-
-            int nx = 60, ny = 10;
-            for (int nIndex = 0; nIndex < frmCount; nIndex++)
-            {
-                nForm[nIndex] = CDCForm.GetInstance(nIndex);
-                //nForm[nIndex] = CHARGERForm.GetInstance(nIndex);
-                nForm[nIndex].SetStage(nIndex);
-                nForm[nIndex].SetStatus(nIndex);
-
-                //* IROCV, PRECHARGER FORM을 Panel에 추가
-                nPanel[nIndex] = new DoubleBufferedPanel();
-                nPanel[nIndex].Width = 260;
-                nPanel[nIndex].Height = 167;
-                nPanel[nIndex].Left = nx;
-                nPanel[nIndex].Top = ny;
-
-                nx += nPanel[nIndex].Width + 34;
-                if (nIndex > 0 && (nIndex + 1) % 6 == 0)
-                {
-                    nx = 60;
-                    ny += 180;
-                }
-
-                util.loadFormIntoPanel(nForm[nIndex], nPanel[nIndex]);
-
-                //* basepanel에 panel(IROCV, PRECHARGER 폼을 가지고 있는 판넬)을 추가
-                //pnlEquipStatus.Controls.Add(nPanel[nIndex]);
-            }
-        }
-
-        private void AddPanel(Form childform, Panel parentpanel, Panel container)
-        {
-            util.loadFormIntoPanel(childform, parentpanel);
-            container.Controls.Add(parentpanel);
-            parentpanel.BringToFront();
-            parentpanel.Dock = DockStyle.Fill;
-        }
-        #endregion
-
         #region Menu Button Control
         private void radbtn_SensorInfo_Click(object sender, EventArgs e)
         {

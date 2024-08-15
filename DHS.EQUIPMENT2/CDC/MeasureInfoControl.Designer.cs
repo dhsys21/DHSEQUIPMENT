@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.tbTime = new System.Windows.Forms.TextBox();
             this.btnFinData = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -527,34 +527,34 @@
             // 
             // 
             // 
-            gridViewTextBoxColumn7.HeaderText = "Channel";
-            gridViewTextBoxColumn7.Name = "column1";
-            gridViewTextBoxColumn7.Width = 135;
-            gridViewTextBoxColumn8.HeaderText = "전압 [mV]";
-            gridViewTextBoxColumn8.Name = "column2";
-            gridViewTextBoxColumn8.Width = 120;
-            gridViewTextBoxColumn9.HeaderText = "전류 [mA]";
-            gridViewTextBoxColumn9.Name = "column3";
-            gridViewTextBoxColumn9.Width = 120;
-            gridViewTextBoxColumn10.HeaderText = "용량 [mAh]";
-            gridViewTextBoxColumn10.Name = "column4";
-            gridViewTextBoxColumn10.Width = 120;
-            gridViewTextBoxColumn11.HeaderText = "셀온도 [℃]";
-            gridViewTextBoxColumn11.Name = "column5";
-            gridViewTextBoxColumn11.Width = 120;
-            gridViewTextBoxColumn12.HeaderText = "CD";
-            gridViewTextBoxColumn12.Name = "column6";
-            gridViewTextBoxColumn12.Width = 100;
+            gridViewTextBoxColumn1.HeaderText = "Channel";
+            gridViewTextBoxColumn1.Name = "column1";
+            gridViewTextBoxColumn1.Width = 135;
+            gridViewTextBoxColumn2.HeaderText = "전압 [mV]";
+            gridViewTextBoxColumn2.Name = "column2";
+            gridViewTextBoxColumn2.Width = 120;
+            gridViewTextBoxColumn3.HeaderText = "전류 [mA]";
+            gridViewTextBoxColumn3.Name = "column3";
+            gridViewTextBoxColumn3.Width = 120;
+            gridViewTextBoxColumn4.HeaderText = "용량 [mAh]";
+            gridViewTextBoxColumn4.Name = "column4";
+            gridViewTextBoxColumn4.Width = 120;
+            gridViewTextBoxColumn5.HeaderText = "셀온도 [℃]";
+            gridViewTextBoxColumn5.Name = "column5";
+            gridViewTextBoxColumn5.Width = 120;
+            gridViewTextBoxColumn6.HeaderText = "CD";
+            gridViewTextBoxColumn6.Name = "column6";
+            gridViewTextBoxColumn6.Width = 100;
             this.gvRight.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn7,
-            gridViewTextBoxColumn8,
-            gridViewTextBoxColumn9,
-            gridViewTextBoxColumn10,
-            gridViewTextBoxColumn11,
-            gridViewTextBoxColumn12});
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4,
+            gridViewTextBoxColumn5,
+            gridViewTextBoxColumn6});
             this.gvRight.MasterTemplate.EnableSorting = false;
             this.gvRight.MasterTemplate.ShowRowHeaderColumn = false;
-            this.gvRight.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.gvRight.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvRight.Name = "gvRight";
             // 
             // 
@@ -568,8 +568,7 @@
             // 
             // MeasureInfoControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.pBase);
             this.Controls.Add(this.tbTime);
