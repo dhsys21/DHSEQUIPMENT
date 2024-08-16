@@ -45,12 +45,13 @@ namespace DHS.EQUIPMENT2.CDC
             dt.Columns.Add("프로세스");
             dt.Columns.Add("STEP");
             dt.Columns.Add("TRAY ID");
+            dt.Columns.Add("RESULT");
 
             string channel = string.Empty;
             for (int i = 0; i < rowCount; i++)
             {
-                channel = (i + 1).ToString();
-                dt.Rows.Add(new string[] { channel, "-", "-", "-", "-", "-" });
+                channel = "STAGE " + (i + 1).ToString("D3");
+                dt.Rows.Add(new string[] { channel, "-", "-", "-", "-", "-", "0" });
 
                 //* for test
                 cells[i] = 1;
@@ -83,17 +84,21 @@ namespace DHS.EQUIPMENT2.CDC
         {
             GridView view = sender as GridView;
             if (e.Column == view.Columns[0])
+            {
                 e.Appearance.BackColor = _Constant.ColorReady;
+                return;
+            }
 
+            /// result 값 가져오기
+            var strValue = view.GetRowCellValue(e.RowHandle, view.Columns[6]).ToString();
+            int cellValue = util.TryParseInt(strValue, 0);
 
-            var strValue = view.GetRowCellValue(e.RowHandle, e.Column).ToString();
-            double cellValue = util.TryParseDouble(strValue, 0);
-
-            //* 첫번째 컬럼만 테스트
-            if(e.Column == view.Columns[1])
+            /// 첫번째 컬럼만 테스트
+            if (e.Column == view.Columns[0])
             {
                 if (strValue == "-") return;
 
+                /// 판정을 RowCellStyle에서 할 때
                 if (cells[e.RowHandle] == 1)
                 {
                     if (cellValue > 2000 && cellValue <= 4200)
@@ -105,6 +110,30 @@ namespace DHS.EQUIPMENT2.CDC
                 {
                     e.Appearance.BackColor = _Constant.ColorNoCell;
                 }
+
+                /// 판정을 set value 에서 할 때
+                if (cellValue == -1) e.Appearance.BackColor = _Constant.ColorNoCell;
+                else if (cellValue == 0) e.Appearance.BackColor = Color.White;
+                else if (cellValue == 1 || cellValue == 3) e.Appearance.BackColor = _Constant.ColorFail;
+                else if (cellValue == 2 || cellValue == 4) e.Appearance.BackColor = Color.Blue;
+            }
+
+            /// 여러 컬럼에 적용
+            if (strValue == "-") return;
+
+            /// 판정을 set value 에서 할 때
+            ///e.Column.AppearanceCell.BackColor
+            if (cellValue == -1) e.Appearance.BackColor = _Constant.ColorNoCell;
+            else if (cellValue == 0) e.Appearance.BackColor = Color.White;
+            else if ((cellValue == 1 || cellValue == 3) 
+                && (e.Column == view.Columns[1] || e.Column == view.Columns[2]))    
+            {
+                e.Appearance.BackColor = _Constant.ColorFail;
+            }
+            else if ((cellValue == 2 || cellValue == 4)
+                && (e.Column == view.Columns[1] || e.Column == view.Columns[2]))
+            {
+                e.Appearance.BackColor = Color.Blue;
             }
         }
 
@@ -113,9 +142,39 @@ namespace DHS.EQUIPMENT2.CDC
         private void radButton13_Click(object sender, EventArgs e)
         {
             SetValueToGrid(gvEquipStatus, 0, 1, "3300");
+            SetValueToGrid(gvEquipStatus, 0, 6, "0");
+
             SetValueToGrid(gvEquipStatus, 1, 1, "0");
+            SetValueToGrid(gvEquipStatus, 1, 6, "1");
+
             SetValueToGrid(gvEquipStatus, 2, 1, "3300");
+            SetValueToGrid(gvEquipStatus, 2, 6, "-1");
+
             SetValueToGrid(gvEquipStatus, 3, 1, "3300");
+            SetValueToGrid(gvEquipStatus, 3, 6, "2");
+        }
+
+        private void gridView1_CustomDrawRowPreview(object sender, DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventArgs e)
+        {
+            //int rowNumber = e.RowHandle + 1;
+            //if(rowNumber % 10 == 0)
+            //{
+            //    e.Cache.FillRectangle(e.Cache.GetSolidBrush(Color.Black), e.Bounds);
+            //    e.Handled = true;
+            //}
+        }
+
+        private void gridView1_MeasurePreviewHeight(object sender, RowHeightEventArgs e)
+        {
+            int rowNumber = e.RowHandle + 1;
+            if(rowNumber % 10 == 0)
+            {
+                e.RowHeight = 1;
+            }
+            else
+            {
+                e.RowHeight = 0;
+            }
         }
     }
 }

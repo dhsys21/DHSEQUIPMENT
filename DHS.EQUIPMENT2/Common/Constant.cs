@@ -337,4 +337,13 @@ namespace DHS.EQUIPMENT2.Common
         CURRENT = 1,
         STATUS = 2
     }
+    public enum enumMeasureResult
+    {
+        NOCELL = -1,
+        OK = 0,
+        IRNG = 1,
+        OCVNG = 2,
+        VOLTAGENG = 3,
+        CURRENTNG = 4
+    }
 }

@@ -204,14 +204,21 @@
             this.gridView1.Appearance.HeaderPanel.Options.UseBackColor = true;
             this.gridView1.Appearance.HeaderPanel.Options.UseTextOptions = true;
             this.gridView1.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.Appearance.HorzLine.BackColor = System.Drawing.Color.Black;
+            this.gridView1.Appearance.HorzLine.Options.UseBackColor = true;
             this.gridView1.Appearance.Row.Options.UseTextOptions = true;
             this.gridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.Appearance.RowSeparator.BackColor = System.Drawing.Color.Black;
+            this.gridView1.Appearance.RowSeparator.Options.UseBackColor = true;
+            this.gridView1.Appearance.VertLine.BackColor = System.Drawing.Color.Gray;
+            this.gridView1.Appearance.VertLine.Options.UseBackColor = true;
             this.gridView1.ColumnPanelRowHeight = 50;
             gridFormatRule1.Name = "Format0";
             gridFormatRule1.Rule = null;
             this.gridView1.FormatRules.Add(gridFormatRule1);
             this.gridView1.GridControl = this.gvEquipStatus;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsBehavior.ReadOnly = true;
             this.gridView1.OptionsCustomization.AllowColumnMoving = false;
             this.gridView1.OptionsCustomization.AllowColumnResizing = false;
@@ -221,8 +228,12 @@
             this.gridView1.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.False;
             this.gridView1.OptionsView.EnableAppearanceOddRow = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.OptionsView.ShowHorizontalLines = DevExpress.Utils.DefaultBoolean.True;
+            this.gridView1.OptionsView.ShowPreview = true;
             this.gridView1.RowHeight = 40;
+            this.gridView1.CustomDrawRowPreview += new DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventHandler(this.gridView1_CustomDrawRowPreview);
             this.gridView1.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridView1_RowCellStyle);
+            this.gridView1.MeasurePreviewHeight += new DevExpress.XtraGrid.Views.Grid.RowHeightEventHandler(this.gridView1_MeasurePreviewHeight);
             // 
             // EquipmentStatusControl
             // 
