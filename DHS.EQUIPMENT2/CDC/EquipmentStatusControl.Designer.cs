@@ -78,6 +78,7 @@
             this.radButton13.TabIndex = 65;
             this.radButton13.Text = "공정진행시간";
             this.radButton13.ThemeName = "ControlDefault";
+            this.radButton13.Click += new System.EventHandler(this.radButton13_Click);
             ((Telerik.WinControls.UI.RadButtonElement)(this.radButton13.GetChildAt(0))).Text = "공정진행시간";
             ((Telerik.WinControls.UI.RadButtonElement)(this.radButton13.GetChildAt(0))).Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton13.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(241)))), ((int)(((byte)(252)))));
@@ -201,15 +202,26 @@
             // 
             this.gridView1.Appearance.HeaderPanel.BackColor = System.Drawing.Color.Black;
             this.gridView1.Appearance.HeaderPanel.Options.UseBackColor = true;
+            this.gridView1.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.gridView1.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.Appearance.Row.Options.UseTextOptions = true;
+            this.gridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.ColumnPanelRowHeight = 50;
             gridFormatRule1.Name = "Format0";
             gridFormatRule1.Rule = null;
             this.gridView1.FormatRules.Add(gridFormatRule1);
             this.gridView1.GridControl = this.gvEquipStatus;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.ReadOnly = true;
+            this.gridView1.OptionsCustomization.AllowColumnMoving = false;
+            this.gridView1.OptionsCustomization.AllowColumnResizing = false;
             this.gridView1.OptionsCustomization.AllowSort = false;
             this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView1.OptionsView.ColumnAutoWidth = false;
+            this.gridView1.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.False;
             this.gridView1.OptionsView.EnableAppearanceOddRow = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.RowHeight = 40;
             this.gridView1.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridView1_RowCellStyle);
             // 
             // EquipmentStatusControl

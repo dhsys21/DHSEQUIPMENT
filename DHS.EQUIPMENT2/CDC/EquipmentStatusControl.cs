@@ -16,6 +16,7 @@ namespace DHS.EQUIPMENT2.CDC
 {
     public partial class EquipmentStatusControl : UserControl
     {
+        int[] cells = new int[_Constant.ControllerCount];
         Util util = new Util();
         private static EquipmentStatusControl equipmentStatusControl = new EquipmentStatusControl();
         public static EquipmentStatusControl GetInstance()
@@ -28,32 +29,13 @@ namespace DHS.EQUIPMENT2.CDC
             InitializeComponent();
 
             makeGridView(gvEquipStatus, _Constant.ControllerCount);
-            SetColumnHeaderColor(gvEquipStatus, Color.DarkGray);
-            //GridView view = gvEquipStatus.MainView as GridView;
-            //view.Columns[0].AppearanceHeader.BackColor = Color.DarkGray;
+            SetColumnStyle(gvEquipStatus, Color.DarkGray);
+
             
         }
 
-        #region Make Grid Control - Dev Express
-        /// row color
-        ///  column header color
-        private void SetColumnHeaderColor(GridControl gc, Color clr)
-        {
-            GridView view = gc.MainView as GridView;
-            for(int nIndex = 0; nIndex < view.Columns.Count; nIndex++)
-                view.Columns[nIndex].AppearanceHeader.BackColor = clr;
-        }
-        public void setcolumnheadercolor(GridControl gc, GridView gridView)
-        {
-            gridView.CustomDrawColumnHeader += (s, e) => {
-                if (e.Column == null || e.Column.FieldName != "CHANNEL")
-                    return;
-                // Fill column headers with the specified colors.
-                e.Cache.FillRectangle(Color.Coral, e.Bounds);
-                e.Appearance.DrawString(e.Cache, e.Info.Caption, e.Info.CaptionRect);
-                e.Handled = true;
-            };
-        }
+        #region Grid Control - Dev Express
+        
         private void makeGridView(GridControl gc, int rowCount)
         {
             DataTable dt = new DataTable();
@@ -69,19 +51,71 @@ namespace DHS.EQUIPMENT2.CDC
             {
                 channel = (i + 1).ToString();
                 dt.Rows.Add(new string[] { channel, "-", "-", "-", "-", "-" });
+
+                //* for test
+                cells[i] = 1;
+                if (i == 2) cells[i] = 0;
             }
 
             gc.DataSource = dt;
         }
+        private void SetColumnStyle(GridControl gc, Color clr)
+        {
+            int nWidth = 300;
+            GridView view = gc.MainView as GridView;
+            for (int nIndex = 0; nIndex < view.Columns.Count; nIndex++)
+            {
+                view.Columns[nIndex].AppearanceHeader.BackColor = clr;
+                view.Columns[nIndex].AppearanceHeader.Font = new Font("Verdana", 14F, FontStyle.Bold);
+                view.Columns[nIndex].AppearanceCell.Font = new Font("Verdana", 12F, FontStyle.Bold);
 
-        #endregion Make Grid View
-
+                if (nIndex == 0) nWidth = 200;
+                else nWidth = 300;
+                view.Columns[nIndex].Width = nWidth;
+            }
+        }
+        private void SetValueToGrid(GridControl gc, int nRow, int nCol, string value) 
+        {
+            GridView view = gc.MainView as GridView;
+            view.SetRowCellValue(nRow, view.Columns[nCol].FieldName, value);
+        }
         private void gridView1_RowCellStyle(object sender, RowCellStyleEventArgs e)
         {
             GridView view = sender as GridView;
-            if (e.Column != view.Columns[0])
-                return;
-            e.Appearance.BackColor = _Constant.ColorReady;
+            if (e.Column == view.Columns[0])
+                e.Appearance.BackColor = _Constant.ColorReady;
+
+
+            var strValue = view.GetRowCellValue(e.RowHandle, e.Column).ToString();
+            double cellValue = util.TryParseDouble(strValue, 0);
+
+            //* 첫번째 컬럼만 테스트
+            if(e.Column == view.Columns[1])
+            {
+                if (strValue == "-") return;
+
+                if (cells[e.RowHandle] == 1)
+                {
+                    if (cellValue > 2000 && cellValue <= 4200)
+                        e.Appearance.BackColor = _Constant.ColorVoltage;
+                    else
+                        e.Appearance.BackColor = _Constant.ColorFail;
+                }
+                else if (cells[e.RowHandle] == 0)
+                {
+                    e.Appearance.BackColor = _Constant.ColorNoCell;
+                }
+            }
+        }
+
+        #endregion Grid View
+
+        private void radButton13_Click(object sender, EventArgs e)
+        {
+            SetValueToGrid(gvEquipStatus, 0, 1, "3300");
+            SetValueToGrid(gvEquipStatus, 1, 1, "0");
+            SetValueToGrid(gvEquipStatus, 2, 1, "3300");
+            SetValueToGrid(gvEquipStatus, 3, 1, "3300");
         }
     }
 }
