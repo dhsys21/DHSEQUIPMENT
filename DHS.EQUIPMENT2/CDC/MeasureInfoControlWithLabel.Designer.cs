@@ -1,6 +1,6 @@
-﻿namespace DHS.EQUIPMENT2
+﻿namespace DHS.EQUIPMENT2.CDC
 {
-    partial class MeasureInfoControl
+    partial class MeasureInfoControlWithLabel
     {
         /// <summary> 
         /// 필수 디자이너 변수입니다.
@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
-            DevExpress.XtraGrid.GridFormatRule gridFormatRule3 = new DevExpress.XtraGrid.GridFormatRule();
             this.tbTime = new System.Windows.Forms.TextBox();
             this.btnFinData = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -62,49 +60,40 @@
             this.label12 = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.pBase = new System.Windows.Forms.Panel();
-            this.gvLeft = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gvRight = new DevExpress.XtraGrid.GridControl();
-            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
-            this.pBase.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gvLeft)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvRight)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // tbTime
             // 
             this.tbTime.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbTime.Location = new System.Drawing.Point(107, 507);
+            this.tbTime.Location = new System.Drawing.Point(109, 510);
             this.tbTime.Name = "tbTime";
             this.tbTime.Size = new System.Drawing.Size(75, 35);
-            this.tbTime.TabIndex = 57;
+            this.tbTime.TabIndex = 65;
             this.tbTime.Text = "30";
             this.tbTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnFinData
             // 
             this.btnFinData.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnFinData.Location = new System.Drawing.Point(200, 504);
+            this.btnFinData.Location = new System.Drawing.Point(202, 507);
             this.btnFinData.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnFinData.Name = "btnFinData";
             this.btnFinData.Size = new System.Drawing.Size(136, 42);
-            this.btnFinData.TabIndex = 64;
+            this.btnFinData.TabIndex = 71;
             this.btnFinData.Text = "Get FIN DAta";
             this.btnFinData.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.lblRecipe);
-            this.groupBox3.Location = new System.Drawing.Point(20, 550);
+            this.groupBox3.Location = new System.Drawing.Point(22, 553);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(316, 223);
-            this.groupBox3.TabIndex = 63;
+            this.groupBox3.TabIndex = 70;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "RECIPE 정보";
             // 
@@ -125,10 +114,10 @@
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Location = new System.Drawing.Point(20, 286);
+            this.groupBox2.Location = new System.Drawing.Point(22, 289);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(316, 204);
-            this.groupBox2.TabIndex = 62;
+            this.groupBox2.TabIndex = 69;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "STAGE 상태";
             // 
@@ -244,10 +233,10 @@
             this.groupBox1.Controls.Add(this.cbStageRow);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.cbStageCol);
-            this.groupBox1.Location = new System.Drawing.Point(20, 153);
+            this.groupBox1.Location = new System.Drawing.Point(22, 156);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(316, 127);
-            this.groupBox1.TabIndex = 61;
+            this.groupBox1.TabIndex = 68;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "STAGE 선택";
             // 
@@ -281,6 +270,7 @@
             this.cbStageName.Size = new System.Drawing.Size(132, 31);
             this.cbStageName.TabIndex = 28;
             this.cbStageName.Text = "        -";
+            this.cbStageName.SelectedIndexChanged += new System.EventHandler(this.cbStageName_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -341,11 +331,11 @@
             this.flowLayoutPanel1.Controls.Add(this.label10);
             this.flowLayoutPanel1.Controls.Add(this.label11);
             this.flowLayoutPanel1.Controls.Add(this.label12);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(20, 80);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(22, 83);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(3);
             this.flowLayoutPanel1.Size = new System.Drawing.Size(316, 63);
-            this.flowLayoutPanel1.TabIndex = 59;
+            this.flowLayoutPanel1.TabIndex = 67;
             // 
             // label1
             // 
@@ -461,118 +451,27 @@
             this.lblTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblTitle.Font = new System.Drawing.Font("굴림", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.ForeColor = System.Drawing.Color.Black;
-            this.lblTitle.Location = new System.Drawing.Point(20, 14);
+            this.lblTitle.Location = new System.Drawing.Point(22, 17);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.lblTitle.Size = new System.Drawing.Size(316, 59);
-            this.lblTitle.TabIndex = 58;
+            this.lblTitle.TabIndex = 66;
             this.lblTitle.Text = "STAGE";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pBase
             // 
             this.pBase.BackColor = System.Drawing.Color.Black;
-            this.pBase.Controls.Add(this.gvRight);
-            this.pBase.Controls.Add(this.gvLeft);
-            this.pBase.Location = new System.Drawing.Point(367, 14);
+            this.pBase.Location = new System.Drawing.Point(363, 17);
             this.pBase.Name = "pBase";
             this.pBase.Padding = new System.Windows.Forms.Padding(2);
             this.pBase.Size = new System.Drawing.Size(1478, 897);
-            this.pBase.TabIndex = 65;
+            this.pBase.TabIndex = 72;
             // 
-            // gvLeft
+            // MeasureInfoControlWithLabel
             // 
-            this.gvLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.gvLeft.Location = new System.Drawing.Point(2, 2);
-            this.gvLeft.MainView = this.gridView1;
-            this.gvLeft.Name = "gvLeft";
-            this.gvLeft.Size = new System.Drawing.Size(736, 893);
-            this.gvLeft.TabIndex = 3;
-            this.gvLeft.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
-            // 
-            // gridView1
-            // 
-            this.gridView1.Appearance.HeaderPanel.BackColor = System.Drawing.Color.Black;
-            this.gridView1.Appearance.HeaderPanel.Options.UseBackColor = true;
-            this.gridView1.Appearance.HeaderPanel.Options.UseTextOptions = true;
-            this.gridView1.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridView1.Appearance.HorzLine.BackColor = System.Drawing.Color.Black;
-            this.gridView1.Appearance.HorzLine.Options.UseBackColor = true;
-            this.gridView1.Appearance.Row.Options.UseTextOptions = true;
-            this.gridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridView1.Appearance.RowSeparator.BackColor = System.Drawing.Color.Black;
-            this.gridView1.Appearance.RowSeparator.Options.UseBackColor = true;
-            this.gridView1.Appearance.VertLine.BackColor = System.Drawing.Color.Gray;
-            this.gridView1.Appearance.VertLine.Options.UseBackColor = true;
-            this.gridView1.ColumnPanelRowHeight = 50;
-            gridFormatRule1.Name = "Format0";
-            gridFormatRule1.Rule = null;
-            this.gridView1.FormatRules.Add(gridFormatRule1);
-            this.gridView1.GridControl = this.gvLeft;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsBehavior.Editable = false;
-            this.gridView1.OptionsBehavior.ReadOnly = true;
-            this.gridView1.OptionsCustomization.AllowColumnMoving = false;
-            this.gridView1.OptionsCustomization.AllowColumnResizing = false;
-            this.gridView1.OptionsCustomization.AllowSort = false;
-            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridView1.OptionsView.ColumnAutoWidth = false;
-            this.gridView1.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.False;
-            this.gridView1.OptionsView.EnableAppearanceOddRow = true;
-            this.gridView1.OptionsView.ShowGroupPanel = false;
-            this.gridView1.OptionsView.ShowHorizontalLines = DevExpress.Utils.DefaultBoolean.True;
-            this.gridView1.OptionsView.ShowPreview = true;
-            this.gridView1.RowHeight = 40;
-            // 
-            // gvRight
-            // 
-            this.gvRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.gvRight.Location = new System.Drawing.Point(740, 2);
-            this.gvRight.MainView = this.gridView2;
-            this.gvRight.Name = "gvRight";
-            this.gvRight.Size = new System.Drawing.Size(736, 893);
-            this.gvRight.TabIndex = 4;
-            this.gvRight.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView2});
-            // 
-            // gridView2
-            // 
-            this.gridView2.Appearance.HeaderPanel.BackColor = System.Drawing.Color.Black;
-            this.gridView2.Appearance.HeaderPanel.Options.UseBackColor = true;
-            this.gridView2.Appearance.HeaderPanel.Options.UseTextOptions = true;
-            this.gridView2.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridView2.Appearance.HorzLine.BackColor = System.Drawing.Color.Black;
-            this.gridView2.Appearance.HorzLine.Options.UseBackColor = true;
-            this.gridView2.Appearance.Row.Options.UseTextOptions = true;
-            this.gridView2.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridView2.Appearance.RowSeparator.BackColor = System.Drawing.Color.Black;
-            this.gridView2.Appearance.RowSeparator.Options.UseBackColor = true;
-            this.gridView2.Appearance.VertLine.BackColor = System.Drawing.Color.Gray;
-            this.gridView2.Appearance.VertLine.Options.UseBackColor = true;
-            this.gridView2.ColumnPanelRowHeight = 50;
-            gridFormatRule3.Name = "Format0";
-            gridFormatRule3.Rule = null;
-            this.gridView2.FormatRules.Add(gridFormatRule3);
-            this.gridView2.GridControl = this.gvRight;
-            this.gridView2.Name = "gridView2";
-            this.gridView2.OptionsBehavior.Editable = false;
-            this.gridView2.OptionsBehavior.ReadOnly = true;
-            this.gridView2.OptionsCustomization.AllowColumnMoving = false;
-            this.gridView2.OptionsCustomization.AllowColumnResizing = false;
-            this.gridView2.OptionsCustomization.AllowSort = false;
-            this.gridView2.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridView2.OptionsView.ColumnAutoWidth = false;
-            this.gridView2.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.False;
-            this.gridView2.OptionsView.EnableAppearanceOddRow = true;
-            this.gridView2.OptionsView.ShowGroupPanel = false;
-            this.gridView2.OptionsView.ShowHorizontalLines = DevExpress.Utils.DefaultBoolean.True;
-            this.gridView2.OptionsView.ShowPreview = true;
-            this.gridView2.RowHeight = 40;
-            // 
-            // MeasureInfoControl
-            // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.pBase);
             this.Controls.Add(this.tbTime);
@@ -582,18 +481,12 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.lblTitle);
-            this.DoubleBuffered = true;
-            this.Name = "MeasureInfoControl";
+            this.Name = "MeasureInfoControlWithLabel";
             this.Size = new System.Drawing.Size(1900, 930);
             this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
-            this.pBase.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gvLeft)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvRight)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -633,9 +526,5 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel pBase;
-        private DevExpress.XtraGrid.GridControl gvRight;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
-        private DevExpress.XtraGrid.GridControl gvLeft;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
     }
 }

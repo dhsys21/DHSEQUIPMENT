@@ -180,6 +180,12 @@
     <Compile Include="CDC\MeasureInfoControl.Designer.cs">
       <DependentUpon>MeasureInfoControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="CDC\MeasureInfoControlWithLabel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CDC\MeasureInfoControlWithLabel.Designer.cs">
+      <DependentUpon>MeasureInfoControlWithLabel.cs</DependentUpon>
+    </Compile>
     <Compile Include="CDC\TRAYINFO.cs" />
     <Compile Include="CDC\CDCStatusForm.cs">
       <SubType>Form</SubType>
@@ -196,6 +202,12 @@
     </Compile>
     <Compile Include="Common\Constant.cs" />
     <Compile Include="Common\DataType.cs" />
+    <Compile Include="Common\DEGridControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\DEGridControl.Designer.cs">
+      <DependentUpon>DEGridControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\DoubleBufferedClass.cs" />
     <Compile Include="Common\Ini.cs" />
     <Compile Include="Common\Util.cs" />
@@ -259,8 +271,14 @@
     <EmbeddedResource Include="CDC\MeasureInfoControl.resx">
       <DependentUpon>MeasureInfoControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CDC\MeasureInfoControlWithLabel.resx">
+      <DependentUpon>MeasureInfoControlWithLabel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CDC\MeasureInfoForm.resx">
       <DependentUpon>MeasureInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\DEGridControl.resx">
+      <DependentUpon>DEGridControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConfigControl.resx">
       <DependentUpon>ConfigControl.cs</DependentUpon>

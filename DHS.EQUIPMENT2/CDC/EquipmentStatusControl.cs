@@ -35,7 +35,6 @@ namespace DHS.EQUIPMENT2.CDC
         }
 
         #region Grid Control - Dev Express
-        
         private void makeGridView(GridControl gc, int rowCount)
         {
             DataTable dt = new DataTable();
@@ -138,8 +137,29 @@ namespace DHS.EQUIPMENT2.CDC
                 e.Appearance.BackColor = Color.Blue;
             }
         }
+        private void gridView1_CustomDrawRowPreview(object sender, DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventArgs e)
+        {
+            int rowNumber = e.RowHandle + 1;
+            if (rowNumber % 10 == 0)
+            {
+                e.Cache.FillRectangle(e.Cache.GetSolidBrush(Color.Black), e.Bounds);
+                e.Handled = true;
+            }
+        }
 
-        #endregion Grid View
+        private void gridView1_MeasurePreviewHeight(object sender, RowHeightEventArgs e)
+        {
+            int rowNumber = e.RowHandle + 1;
+            if (rowNumber % 10 == 0)
+            {
+                e.RowHeight = 1;
+            }
+            else
+            {
+                e.RowHeight = 0;
+            }
+        }
+        #endregion Grid Control - Dev Express
 
         private void radButton13_Click(object sender, EventArgs e)
         {
@@ -156,27 +176,6 @@ namespace DHS.EQUIPMENT2.CDC
             SetValueToGrid(gvEquipStatus, 3, 6, "2");
         }
 
-        private void gridView1_CustomDrawRowPreview(object sender, DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventArgs e)
-        {
-            int rowNumber = e.RowHandle + 1;
-            if (rowNumber % 10 == 0)
-            {
-                e.Cache.FillRectangle(e.Cache.GetSolidBrush(Color.Black), e.Bounds);
-                e.Handled = true;
-            }
-        }
-
-        private void gridView1_MeasurePreviewHeight(object sender, RowHeightEventArgs e)
-        {
-            int rowNumber = e.RowHandle + 1;
-            if(rowNumber % 10 == 0)
-            {
-                e.RowHeight = 1;
-            }
-            else
-            {
-                e.RowHeight = 0;
-            }
-        }
+        
     }
 }
