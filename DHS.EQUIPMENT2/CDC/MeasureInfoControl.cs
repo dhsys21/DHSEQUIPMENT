@@ -25,6 +25,9 @@ namespace DHS.EQUIPMENT2
         private bool bVisible;
         public int STAGENO { get => nStageno; set => nStageno = value; }
         public bool VISIBLE { get => bVisible; set => bVisible = value; }
+        public int SEPERATOR { get; set; }
+        private int nResultColumn;
+        private int nRowHeight;
 
         private Timer _tmrGetMon = null;
 
@@ -53,22 +56,19 @@ namespace DHS.EQUIPMENT2
             for (int nIndex = 0; nIndex < _Constant.ControllerCount; nIndex++)
                 nTrayInfo[nIndex] = TRAYINFO.GetInstance(nIndex);
 
-            #region Label 이용
-            /// Label 그리기
-            //int width = 120;
-            //int height = 30;
-            //int startx = 0, starty = 0;
+            //* 결과 컬럼
+            nResultColumn = 5;
+            nRowHeight = 25;
+            /// 채널 일정 갯수 마다 구분선
+            /// 
+            SEPERATOR = 10;
+            /// 채널 절반 표시
+            makeGridView(gvLeft, _Constant.ChannelCount / 2, 1);
+            SetColumnStyle(gvLeft, Color.DarkGray);
 
-            //makeHeaderLabel(pBase, width, height);
-            //makeLabel(pBase, width, height, startx, starty + height);
-            //initLabel();
-            #endregion
-
-            /// column header color
-            //initGridView(gvLeft, gridView1);
-
-            //makeGridViewGroup(gvLeft, _Constant.ChannelCount / 2);
-            makeGridView(gvLeft, _Constant.ChannelCount / 2);
+            /// 채널 나머지 절반 표시
+            makeGridView(gvRight, _Constant.ChannelCount / 2, _Constant.ChannelCount / 2 + 1);
+            SetColumnStyle(gvRight, Color.DarkGray);
 
             //* Get Mon Data Timer
             _tmrGetMon = new Timer();
@@ -87,63 +87,100 @@ namespace DHS.EQUIPMENT2
         }
 
         #region Make Grid View
-        public void initGridView(RadGridView gv)
+        private void makeGridView(GridControl gc, int nRowLength, int nStartIndex)
         {
-            gv.AllowColumnResize = false;
-            gv.TableElement.TableHeaderHeight = 40;
+            DataTable dt = new DataTable();
+            dt.Columns.Add("채널");
+            dt.Columns.Add("전압[mV]");
+            dt.Columns.Add("전류[mA]");
+            dt.Columns.Add("용량[mAh]");
+            dt.Columns.Add("셀온도[℃]");
+            dt.Columns.Add("RESULT");
 
-            gv.MasterTemplate.AllowAddNewRow = false;
+            string channel = string.Empty;
+            for (int i = nStartIndex; i < nRowLength + nStartIndex; i++)
+            {
+                channel = i.ToString();
+                dt.Rows.Add(new string[] { channel, "-", "-", "-", "-", "-"});
+            }
+
+            gc.DataSource = dt;
         }
-
-        public void setcolumnheadercolor(GridControl gc, GridView gridView)
+        private void SetColumnStyle(GridControl gc, Color clr)
         {
-            gridView.CustomDrawColumnHeader += (s, e) => {
-                if (e.Column == null || e.Column.FieldName != "CHANNEL")
-                    return;
-                // Fill column headers with the specified colors.
-                e.Cache.FillRectangle(Color.Coral, e.Bounds);
-                e.Appearance.DrawString(e.Cache, e.Info.Caption, e.Info.CaptionRect);
+            int nWidth = 100;
+            GridView view = gc.MainView as GridView;
+            view.RowHeight = nRowHeight;
+
+            for (int nIndex = 0; nIndex < view.Columns.Count; nIndex++)
+            {
+                view.Columns[nIndex].AppearanceHeader.BackColor = clr;
+                view.Columns[nIndex].AppearanceHeader.Font = new Font("Verdana", 14F, FontStyle.Bold);
+                view.Columns[nIndex].AppearanceCell.Font = new Font("Verdana", 12F, FontStyle.Bold);
+
+                if (nIndex == 0) nWidth = 90;
+                else nWidth = 159;
+                view.Columns[nIndex].Width = nWidth;
+            }
+
+            view.Columns[nResultColumn].Visible = false;
+        }
+        private void SetValueToGrid(GridControl gc, int nRow, int nCol, string value)
+        {
+            GridView view = gc.MainView as GridView;
+            view.SetRowCellValue(nRow, view.Columns[nCol].FieldName, value);
+        }
+        private void gridView1_RowCellStyle(object sender, RowCellStyleEventArgs e)
+        {
+            GridView view = sender as GridView;
+            if (e.Column == view.Columns[0])
+            {
+                e.Appearance.BackColor = _Constant.ColorReady;
+                return;
+            }
+
+            /// result 값 가져오기
+            var strValue = view.GetRowCellValue(e.RowHandle, view.Columns[nResultColumn]).ToString();
+            int cellValue = util.TryParseInt(strValue, 0);
+
+            /// 여러 컬럼에 적용
+            if (strValue == "-") return;
+
+            if (cellValue == -1) e.Appearance.BackColor = _Constant.ColorNoCell;
+            else if (cellValue == 0) e.Appearance.BackColor = Color.White;
+            else if ((cellValue == 1 || cellValue == 3)
+                && (e.Column == view.Columns[1] || e.Column == view.Columns[2]))
+            {
+                e.Appearance.BackColor = _Constant.ColorFail;
+            }
+            else if ((cellValue == 2 || cellValue == 4)
+                && (e.Column == view.Columns[1] || e.Column == view.Columns[2]))
+            {
+                e.Appearance.BackColor = Color.Blue;
+            }
+        }
+        private void gridView1_CustomDrawRowPreview(object sender, DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventArgs e)
+        {
+            int rowNumber = e.RowHandle + 1;
+            if (rowNumber % SEPERATOR == 0)
+            {
+                e.Cache.FillRectangle(e.Cache.GetSolidBrush(Color.Black), e.Bounds);
                 e.Handled = true;
-            };
-        }
-        private void makeGridView(GridControl gc, int rowCount)
-        {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("CHANNEL");
-            dt.Columns.Add("전압");
-            dt.Columns.Add("전류");
-            dt.Columns.Add("용량");
-            dt.Columns.Add("CD");
-
-            string channel = string.Empty;
-            for (int i = 0; i < rowCount; i++)
-            {
-                channel = (i + 1).ToString();
-                dt.Rows.Add(new string[] { channel, "-", "-", "-", "-"});
             }
-
-            gc.DataSource = dt;
         }
-        private void makeGridView_IROCV(GridControl gc, int rowCount)
+
+        private void gridView1_MeasurePreviewHeight(object sender, RowHeightEventArgs e)
         {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("CHANNEL");
-            dt.Columns.Add("전압");
-            dt.Columns.Add("전류");
-            dt.Columns.Add("용량");
-            dt.Columns.Add("CD");
-
-            string channel = string.Empty;
-            for(int i = 0; i < rowCount; i++)
+            int rowNumber = e.RowHandle + 1;
+            if (rowNumber % SEPERATOR == 0)
             {
-                channel = (i + 1).ToString();
-                dt.Rows.Add(new string[] { channel, i.ToString() , (i + 1).ToString(), (i+2).ToString(), (i+3).ToString()});
-                dt.Rows.Add(new string[] { channel, i.ToString(), (i + 2).ToString(), (i + 3).ToString(), (i + 1).ToString() });
+                e.RowHeight = 1;
             }
-
-            gc.DataSource = dt;
+            else
+            {
+                e.RowHeight = 0;
+            }
         }
-       
         #endregion Make Grid View
 
         #region Devexpress Grid Control
@@ -170,13 +207,7 @@ namespace DHS.EQUIPMENT2
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
         }
 
-        private void gridView1_RowCellStyle(object sender, RowCellStyleEventArgs e)
-        {
-            GridView view = sender as GridView;
-            if (e.Column != view.Columns["CHANNEL"])
-                return;
-            e.Appearance.BackColor = _Constant.ColorReady;
-        }
+        
         #endregion Devexpress Grid Control
 
         #region Get Mon Data Timer
@@ -260,7 +291,5 @@ namespace DHS.EQUIPMENT2
         {
             
         }
-
-        
     }
 }

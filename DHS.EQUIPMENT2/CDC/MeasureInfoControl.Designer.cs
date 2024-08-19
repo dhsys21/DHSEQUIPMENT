@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule2 = new DevExpress.XtraGrid.GridFormatRule();
             DevExpress.XtraGrid.GridFormatRule gridFormatRule3 = new DevExpress.XtraGrid.GridFormatRule();
             this.tbTime = new System.Windows.Forms.TextBox();
             this.btnFinData = new System.Windows.Forms.Button();
@@ -62,19 +62,19 @@
             this.label12 = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.pBase = new System.Windows.Forms.Panel();
-            this.gvLeft = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gvRight = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gvLeft = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.pBase.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gvLeft)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvLeft)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // tbTime
@@ -474,64 +474,19 @@
             this.pBase.BackColor = System.Drawing.Color.Black;
             this.pBase.Controls.Add(this.gvRight);
             this.pBase.Controls.Add(this.gvLeft);
-            this.pBase.Location = new System.Drawing.Point(367, 14);
+            this.pBase.Location = new System.Drawing.Point(342, 14);
             this.pBase.Name = "pBase";
             this.pBase.Padding = new System.Windows.Forms.Padding(2);
-            this.pBase.Size = new System.Drawing.Size(1478, 897);
+            this.pBase.Size = new System.Drawing.Size(1550, 897);
             this.pBase.TabIndex = 65;
-            // 
-            // gvLeft
-            // 
-            this.gvLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.gvLeft.Location = new System.Drawing.Point(2, 2);
-            this.gvLeft.MainView = this.gridView1;
-            this.gvLeft.Name = "gvLeft";
-            this.gvLeft.Size = new System.Drawing.Size(736, 893);
-            this.gvLeft.TabIndex = 3;
-            this.gvLeft.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
-            // 
-            // gridView1
-            // 
-            this.gridView1.Appearance.HeaderPanel.BackColor = System.Drawing.Color.Black;
-            this.gridView1.Appearance.HeaderPanel.Options.UseBackColor = true;
-            this.gridView1.Appearance.HeaderPanel.Options.UseTextOptions = true;
-            this.gridView1.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridView1.Appearance.HorzLine.BackColor = System.Drawing.Color.Black;
-            this.gridView1.Appearance.HorzLine.Options.UseBackColor = true;
-            this.gridView1.Appearance.Row.Options.UseTextOptions = true;
-            this.gridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridView1.Appearance.RowSeparator.BackColor = System.Drawing.Color.Black;
-            this.gridView1.Appearance.RowSeparator.Options.UseBackColor = true;
-            this.gridView1.Appearance.VertLine.BackColor = System.Drawing.Color.Gray;
-            this.gridView1.Appearance.VertLine.Options.UseBackColor = true;
-            this.gridView1.ColumnPanelRowHeight = 50;
-            gridFormatRule1.Name = "Format0";
-            gridFormatRule1.Rule = null;
-            this.gridView1.FormatRules.Add(gridFormatRule1);
-            this.gridView1.GridControl = this.gvLeft;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsBehavior.Editable = false;
-            this.gridView1.OptionsBehavior.ReadOnly = true;
-            this.gridView1.OptionsCustomization.AllowColumnMoving = false;
-            this.gridView1.OptionsCustomization.AllowColumnResizing = false;
-            this.gridView1.OptionsCustomization.AllowSort = false;
-            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridView1.OptionsView.ColumnAutoWidth = false;
-            this.gridView1.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.False;
-            this.gridView1.OptionsView.EnableAppearanceOddRow = true;
-            this.gridView1.OptionsView.ShowGroupPanel = false;
-            this.gridView1.OptionsView.ShowHorizontalLines = DevExpress.Utils.DefaultBoolean.True;
-            this.gridView1.OptionsView.ShowPreview = true;
-            this.gridView1.RowHeight = 40;
             // 
             // gvRight
             // 
             this.gvRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.gvRight.Location = new System.Drawing.Point(740, 2);
+            this.gvRight.Location = new System.Drawing.Point(778, 2);
             this.gvRight.MainView = this.gridView2;
             this.gvRight.Name = "gvRight";
-            this.gvRight.Size = new System.Drawing.Size(736, 893);
+            this.gvRight.Size = new System.Drawing.Size(770, 893);
             this.gvRight.TabIndex = 4;
             this.gvRight.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -551,9 +506,9 @@
             this.gridView2.Appearance.VertLine.BackColor = System.Drawing.Color.Gray;
             this.gridView2.Appearance.VertLine.Options.UseBackColor = true;
             this.gridView2.ColumnPanelRowHeight = 50;
-            gridFormatRule3.Name = "Format0";
-            gridFormatRule3.Rule = null;
-            this.gridView2.FormatRules.Add(gridFormatRule3);
+            gridFormatRule2.Name = "Format0";
+            gridFormatRule2.Rule = null;
+            this.gridView2.FormatRules.Add(gridFormatRule2);
             this.gridView2.GridControl = this.gvRight;
             this.gridView2.Name = "gridView2";
             this.gridView2.OptionsBehavior.Editable = false;
@@ -569,6 +524,57 @@
             this.gridView2.OptionsView.ShowHorizontalLines = DevExpress.Utils.DefaultBoolean.True;
             this.gridView2.OptionsView.ShowPreview = true;
             this.gridView2.RowHeight = 40;
+            this.gridView2.CustomDrawRowPreview += new DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventHandler(this.gridView1_CustomDrawRowPreview);
+            this.gridView2.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridView1_RowCellStyle);
+            this.gridView2.MeasurePreviewHeight += new DevExpress.XtraGrid.Views.Grid.RowHeightEventHandler(this.gridView1_MeasurePreviewHeight);
+            // 
+            // gvLeft
+            // 
+            this.gvLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.gvLeft.Location = new System.Drawing.Point(2, 2);
+            this.gvLeft.MainView = this.gridView1;
+            this.gvLeft.Name = "gvLeft";
+            this.gvLeft.Size = new System.Drawing.Size(770, 893);
+            this.gvLeft.TabIndex = 3;
+            this.gvLeft.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.Appearance.HeaderPanel.BackColor = System.Drawing.Color.Black;
+            this.gridView1.Appearance.HeaderPanel.Options.UseBackColor = true;
+            this.gridView1.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.gridView1.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.Appearance.HorzLine.BackColor = System.Drawing.Color.Black;
+            this.gridView1.Appearance.HorzLine.Options.UseBackColor = true;
+            this.gridView1.Appearance.Row.Options.UseTextOptions = true;
+            this.gridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.Appearance.RowSeparator.BackColor = System.Drawing.Color.Black;
+            this.gridView1.Appearance.RowSeparator.Options.UseBackColor = true;
+            this.gridView1.Appearance.VertLine.BackColor = System.Drawing.Color.Gray;
+            this.gridView1.Appearance.VertLine.Options.UseBackColor = true;
+            this.gridView1.ColumnPanelRowHeight = 50;
+            gridFormatRule3.Name = "Format0";
+            gridFormatRule3.Rule = null;
+            this.gridView1.FormatRules.Add(gridFormatRule3);
+            this.gridView1.GridControl = this.gvLeft;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsBehavior.ReadOnly = true;
+            this.gridView1.OptionsCustomization.AllowColumnMoving = false;
+            this.gridView1.OptionsCustomization.AllowColumnResizing = false;
+            this.gridView1.OptionsCustomization.AllowSort = false;
+            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView1.OptionsView.ColumnAutoWidth = false;
+            this.gridView1.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.False;
+            this.gridView1.OptionsView.EnableAppearanceOddRow = true;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.OptionsView.ShowHorizontalLines = DevExpress.Utils.DefaultBoolean.True;
+            this.gridView1.OptionsView.ShowPreview = true;
+            this.gridView1.RowHeight = 40;
+            this.gridView1.CustomDrawRowPreview += new DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventHandler(this.gridView1_CustomDrawRowPreview);
+            this.gridView1.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridView1_RowCellStyle);
+            this.gridView1.MeasurePreviewHeight += new DevExpress.XtraGrid.Views.Grid.RowHeightEventHandler(this.gridView1_MeasurePreviewHeight);
             // 
             // MeasureInfoControl
             // 
@@ -590,10 +596,10 @@
             this.groupBox1.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.pBase.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gvLeft)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvLeft)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -19,6 +19,7 @@ namespace DHS.EQUIPMENT2
         private ManualModeControl manualModeControl;
         private ConfigControl configControl;
         private MeasureInfoControl measureInfoControl;
+        private MeasureInfoControlWithLabel measureInfoControlWithLabel;
         private MeasureChartControl measureChartControl;
         private CalibrationControl calibrationControl;
         private EquipmentStatusControl equipmentStatusControl;
@@ -100,6 +101,13 @@ namespace DHS.EQUIPMENT2
             measureInfoControl.Parent = pnlMainBody;
             measureInfoControl.Visible = false;
 
+            /// Measure Info Label
+            /// 
+            measureInfoControlWithLabel = MeasureInfoControlWithLabel.GetInstance();
+            measureInfoControlWithLabel.Dock = DockStyle.Fill;
+            measureInfoControlWithLabel.Parent = pnlMainBody;
+            measureInfoControlWithLabel.Visible = false;
+
             /// Measure Info Chart
             /// 
             measureChartControl = MeasureChartControl.GetInstance();
@@ -148,7 +156,8 @@ namespace DHS.EQUIPMENT2
         }
         private void radbtn_ResultInfo_Click(object sender, EventArgs e)
         {
-            SelectTabPage(enumTabType.RESULTINFO);
+            SetControlVisible(false);
+            measureInfoControlWithLabel.Visible = true;
         }
         private void radbtn_Chart_Click(object sender, EventArgs e)
         {
@@ -194,6 +203,7 @@ namespace DHS.EQUIPMENT2
             configControl.Visible = bVisible;
             measureChartControl.Visible = bVisible;
             measureInfoControl.Visible = bVisible;
+            measureInfoControlWithLabel.Visible = bVisible;
             equipmentStatusControl.Visible = bVisible;
         }
         private void SelectTabPage(enumTabType enumType)
