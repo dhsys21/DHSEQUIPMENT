@@ -50,7 +50,7 @@ namespace DHS.EQUIPMENT2.CDC
             for (int i = 0; i < rowCount; i++)
             {
                 channel = "STAGE " + (i + 1).ToString("D3");
-                dt.Rows.Add(new string[] { channel, "-", "-", "-", "-", "-", "0" });
+                dt.Rows.Add(new string[] { channel, "-", "-", "-", "-", "-", "-" });
 
                 //* for test
                 cells[i] = 1;
@@ -87,44 +87,19 @@ namespace DHS.EQUIPMENT2.CDC
             if (e.Column == view.Columns[0])
             {
                 e.Appearance.BackColor = _Constant.ColorReady;
-                return;
             }
 
             /// result 값 가져오기
             var strValue = view.GetRowCellValue(e.RowHandle, view.Columns[6]).ToString();
-            int cellValue = util.TryParseInt(strValue, 0);
-
-            /// 첫번째 컬럼만 테스트
-            if (e.Column == view.Columns[0])
-            {
-                if (strValue == "-") return;
-
-                /// 판정을 RowCellStyle에서 할 때
-                if (cells[e.RowHandle] == 1)
-                {
-                    if (cellValue > 2000 && cellValue <= 4200)
-                        e.Appearance.BackColor = _Constant.ColorVoltage;
-                    else
-                        e.Appearance.BackColor = _Constant.ColorFail;
-                }
-                else if (cells[e.RowHandle] == 0)
-                {
-                    e.Appearance.BackColor = _Constant.ColorNoCell;
-                }
-
-                /// 판정을 set value 에서 할 때
-                if (cellValue == -1) e.Appearance.BackColor = _Constant.ColorNoCell;
-                else if (cellValue == 0) e.Appearance.BackColor = Color.White;
-                else if (cellValue == 1 || cellValue == 3) e.Appearance.BackColor = _Constant.ColorFail;
-                else if (cellValue == 2 || cellValue == 4) e.Appearance.BackColor = Color.Blue;
-            }
+            int cellValue = util.TryParseInt(strValue, -99);
 
             /// 여러 컬럼에 적용
             if (strValue == "-") return;
 
-            /// 판정을 set value 에서 할 때
-            ///e.Column.AppearanceCell.BackColor
-            if (cellValue == -1) e.Appearance.BackColor = _Constant.ColorNoCell;
+            if (cellValue == -1)
+            {
+                e.Appearance.BackColor = _Constant.ColorNoCell;
+            }
             else if (cellValue == 0) e.Appearance.BackColor = Color.White;
             else if ((cellValue == 1 || cellValue == 3) 
                 && (e.Column == view.Columns[1] || e.Column == view.Columns[2]))    

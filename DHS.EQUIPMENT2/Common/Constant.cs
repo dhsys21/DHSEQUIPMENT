@@ -58,7 +58,7 @@ namespace DHS.EQUIPMENT2.Common
         #region Color Status
         //* 측정 color
         public static readonly Color ColorReady = Color.LightBlue;
-        public static readonly Color ColorNoCell = Color.Silver;
+        public static readonly Color ColorNoCell = Color.DarkGray;
         public static readonly Color ColorOutFlow = Color.Yellow;
         public static readonly Color ColorCharging = Color.Orange;
         public static readonly Color ColorDischarging = Color.DarkOrange;
