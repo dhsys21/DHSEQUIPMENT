@@ -70,10 +70,12 @@ namespace DHS.EQUIPMENT2.CDC
                 view.Columns[nIndex].AppearanceHeader.Font = new Font("Verdana", 14F, FontStyle.Bold);
                 view.Columns[nIndex].AppearanceCell.Font = new Font("Verdana", 12F, FontStyle.Bold);
 
-                if (nIndex == 0) nWidth = 200;
-                else nWidth = 300;
+                if (nIndex == 0) nWidth = 208;
+                else nWidth = 330;
                 view.Columns[nIndex].Width = nWidth;
             }
+
+            view.Columns[6].Visible = false;
         }
         private void SetValueToGrid(GridControl gc, int nRow, int nCol, string value) 
         {
@@ -156,12 +158,12 @@ namespace DHS.EQUIPMENT2.CDC
 
         private void gridView1_CustomDrawRowPreview(object sender, DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventArgs e)
         {
-            //int rowNumber = e.RowHandle + 1;
-            //if(rowNumber % 10 == 0)
-            //{
-            //    e.Cache.FillRectangle(e.Cache.GetSolidBrush(Color.Black), e.Bounds);
-            //    e.Handled = true;
-            //}
+            int rowNumber = e.RowHandle + 1;
+            if (rowNumber % 10 == 0)
+            {
+                e.Cache.FillRectangle(e.Cache.GetSolidBrush(Color.Black), e.Bounds);
+                e.Handled = true;
+            }
         }
 
         private void gridView1_MeasurePreviewHeight(object sender, RowHeightEventArgs e)
