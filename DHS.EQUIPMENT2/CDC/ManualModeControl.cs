@@ -278,23 +278,33 @@ namespace DHS.EQUIPMENT2.CDC
             string current = string.Empty;
             string voltage = string.Empty;
 
-            int recipeno = util.TryParseInt(recipe_no, 0);
-            if (recipeno < 0) return;
+            int recipeno = util.TryParseInt(recipe_no, -1);
+            if (recipeno < 0)
+            {
+                MessageBox.Show("No Recipe no.");
+                return;
+            }
 
-            //if (mariadb.DELETERECIPEDATA(recipe_no) == true)
-            //{
-            //    for (int nIndex = 0; nIndex < rowCount; nIndex++)
-            //    {
-            //        recipe_method = dgvSequence.Rows[nIndex].Cells[1].Value.ToString();
-            //        current = dgvSequence.Rows[nIndex].Cells[2].Value.ToString();
-            //        voltage = dgvSequence.Rows[nIndex].Cells[3].Value.ToString();
-            //        time = dgvSequence.Rows[nIndex].Cells[4].Value.ToString();
+            List<Recipe> recipes = new List<Recipe>();
 
+            for (int nIndex = 0; nIndex < rowCount; nIndex++)
+            {
+                Recipe recipe = new Recipe();
+                recipe_method = dgvSequence.Rows[nIndex].Cells[1].Value.ToString();
+                current = dgvSequence.Rows[nIndex].Cells[2].Value.ToString();
+                voltage = dgvSequence.Rows[nIndex].Cells[3].Value.ToString();
+                time = dgvSequence.Rows[nIndex].Cells[4].Value.ToString();
 
-            //        await mariadb.INSERTRECIPEAsync(recipeno, (nIndex + 1).ToString(), recipe_method, time, current, voltage);
-            //    }
-            //}
+                recipe.orderno = (nIndex + 1).ToString();
+                recipe.recipemethod = recipe_method;
+                recipe.time = time;
+                recipe.current = current;
+                recipe.voltage = voltage;
 
+                recipes.Add(recipe);
+            }
+
+            util.SaveRecipe(recipe_no, recipes);
         }
         private void ReadRecipe()
         {

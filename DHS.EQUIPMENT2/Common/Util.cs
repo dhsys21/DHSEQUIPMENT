@@ -1177,6 +1177,28 @@ namespace DHS.EQUIPMENT2.Common
         }
         #endregion Keysight Controller config
 
+        #region Charging/Discharging Recipe
+        public void SaveRecipe(string recipe_no, List<Recipe> recipeList)
+        {
+            /// init file open
+            /// 
+            string filename = _Constant.BIN_PATH + "RECIPE_" + recipe_no + ".inf";
+            SoftCircuits.IniFileParser.IniFile file = new SoftCircuits.IniFileParser.IniFile();
+
+            /// save recipe list to ini file
+            /// 
+            string section = string.Empty;
+            foreach (Recipe recipe in recipeList)
+            {
+                section = recipe.recipemethod;
+                file.SetSetting(section, "ORDERNO", recipe.orderno);
+                file.SetSetting(section, "TIME", recipe.time);
+                file.SetSetting(section, "CURRENT", recipe.current);
+                file.SetSetting(section, "VOLTAGE", recipe.voltage);
+                file.Save(filename);
+            }
+        }
+        #endregion Charging/Discharging Recipe
 
         #region DCIR Recipe
 
