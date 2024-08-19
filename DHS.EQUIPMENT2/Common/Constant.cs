@@ -41,7 +41,7 @@ namespace DHS.EQUIPMENT2.Common
         public static readonly string OFFSET_PATH = APP_PATH + "OFFSET\\";
         public static readonly string TRAY_PATH = APP_PATH + "Tray\\";
         public static readonly string CONFIG_FILE = BIN_PATH + "Systeminfo.inf";
-        public static readonly string RECIPE_FILE = BIN_PATH + "Recipe.inf";
+        public static readonly string RECIPE_FILE = BIN_PATH + "RecipeDcir.inf";
         #endregion
 
         #region mariadb/ DBS config file

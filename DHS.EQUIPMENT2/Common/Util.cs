@@ -1198,6 +1198,36 @@ namespace DHS.EQUIPMENT2.Common
                 file.Save(filename);
             }
         }
+        public List<Recipe> ReadRecipe(string recipe_no)
+        {
+            List<Recipe> recipeList = new List<Recipe>();
+            string filename = _Constant.BIN_PATH + "RECIPE_" + recipe_no + ".inf";
+            SoftCircuits.IniFileParser.IniFile file = new SoftCircuits.IniFileParser.IniFile();
+
+            try
+            {
+                file.Load(filename);
+
+                string recipeno = string.Empty;
+                foreach (var section in file.GetSections())
+                {
+                    Recipe recipe = new Recipe();
+                    recipe.orderno = file.GetSetting(section, "ORDERNO");
+                    recipe.recipemethod = section.ToString();
+                    recipe.time = file.GetSetting(section, "TIME");
+                    recipe.current = file.GetSetting(section, "CURRENT");
+                    recipe.voltage = file.GetSetting(section, "VOLTAGE");
+
+                    recipeList.Add(recipe);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            return recipeList;
+        }
         #endregion Charging/Discharging Recipe
 
         #region DCIR Recipe

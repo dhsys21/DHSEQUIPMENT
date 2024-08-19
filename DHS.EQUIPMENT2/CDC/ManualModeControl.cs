@@ -308,24 +308,28 @@ namespace DHS.EQUIPMENT2.CDC
         }
         private void ReadRecipe()
         {
-            //string recipe_no = cbRecipeNo.Text;
-            //int recipeno = util.TryParseInt(recipe_no, 0);
-            //if (recipeno < 0) return;
+            string recipe_no = cbRecipeNo.Text;
+            int recipeno = util.TryParseInt(recipe_no, -1);
+            if (recipeno < 0)
+            {
+                MessageBox.Show("No Recipe no.");
+                return;
+            }
 
-            //List<Recipe> recipes = mariadb.GETRECIPEDATAAsync(recipe_no);
-            //util.DeleteRowsGridView(dgvSequence);
-            //if (recipes.Count > 0)
-            //{
-            //    dgvSequence.Rows.Add(recipes.Count);
-            //    for (int nIndex = 0; nIndex < recipes.Count; nIndex++)
-            //    {
-            //        util.SetValueToGridView(recipes[nIndex].orderno, nIndex, 0, dgvSequence);
-            //        util.SetValueToGridView(recipes[nIndex].recipemethod, nIndex, 1, dgvSequence);
-            //        util.SetValueToGridView(recipes[nIndex].current, nIndex, 2, dgvSequence);
-            //        util.SetValueToGridView(recipes[nIndex].voltage, nIndex, 3, dgvSequence);
-            //        util.SetValueToGridView(recipes[nIndex].time, nIndex, 4, dgvSequence);
-            //    }
-            //}
+            List<Recipe> recipes = util.ReadRecipe(recipe_no);
+            util.DeleteRowsGridView(dgvSequence);
+            if (recipes.Count > 0)
+            {
+                dgvSequence.Rows.Add(recipes.Count);
+                for (int nIndex = 0; nIndex < recipes.Count; nIndex++)
+                {
+                    util.SetValueToGridView(recipes[nIndex].orderno, nIndex, 0, dgvSequence);
+                    util.SetValueToGridView(recipes[nIndex].recipemethod, nIndex, 1, dgvSequence);
+                    util.SetValueToGridView(recipes[nIndex].current, nIndex, 2, dgvSequence);
+                    util.SetValueToGridView(recipes[nIndex].voltage, nIndex, 3, dgvSequence);
+                    util.SetValueToGridView(recipes[nIndex].time, nIndex, 4, dgvSequence);
+                }
+            }
         }
 
 
