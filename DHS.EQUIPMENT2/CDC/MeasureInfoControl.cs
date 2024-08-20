@@ -66,7 +66,6 @@ namespace DHS.EQUIPMENT2
             nResultColumn = 5;
             nRowHeight = 25;
             /// 채널 일정 갯수 마다 구분선
-            /// 
             SEPERATOR = 10;
             /// 채널 절반 표시
             makeGridView(gvLeft, _Constant.ChannelCount / 2, 1);
@@ -92,7 +91,7 @@ namespace DHS.EQUIPMENT2
             bVisible = isVisibled;
         }
 
-        #region Make Grid View
+        #region Grid Control/ View
         private void makeGridView(GridControl gc, int nRowLength, int nStartIndex)
         {
             DataTable dt = new DataTable();
@@ -187,7 +186,7 @@ namespace DHS.EQUIPMENT2
                 e.RowHeight = 0;
             }
         }
-        #endregion Make Grid View
+        #endregion Grid Control/ View
 
         #region Devexpress Grid Control
         private void gridView1_CellMerge(object sender, CellMergeEventArgs e)
@@ -213,10 +212,17 @@ namespace DHS.EQUIPMENT2
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
         }
 
-        
+
         #endregion Devexpress Grid Control
 
         #region Get Mon Data Timer
+        public string ConvertMsTimeToString(ulong time)
+        {
+            string strTime = string.Empty;
+            TimeSpan ts = TimeSpan.FromMilliseconds(time);
+            strTime = ts.ToString(@"hh\:mm\:ss\.fff");
+            return strTime;
+        }
         private void SetValueToGrid(KeysightController keysController)
         {
             GridControl gc = null;
@@ -313,6 +319,7 @@ namespace DHS.EQUIPMENT2
                 Console.WriteLine(ex.ToString());
             }
         }
+
         #region Mon data 저장 파일을 읽어서 표시
         private void SetValueToGrid2(KeysightMonData mondata, List<float> temperatureList)
         {
@@ -384,7 +391,6 @@ namespace DHS.EQUIPMENT2
                         //* 현재 선택된 MON DATA
                         //* 파일을 읽지 말고 keysightcontroller[stageno] 정보를 읽어서 표시?
                         KeysightMonData mondata = util.ReadMonData(nStageno, nTrayInfo[nStageno]);// mariadb.GETMONDATAFORCAPACITY(nStageNo);
-                        ControllerSenData nSenData = null;
 
                         //* Recipe 정보 표시
                         List<Recipe> recipes = nTrayInfo[nStageNo - 1].RECIPE;
@@ -402,7 +408,7 @@ namespace DHS.EQUIPMENT2
                         if (mondata == null) return;
 
                         //* grid control에 값 입력으로 수정해야 함
-                        SetValueToGrid(mondata, keysightController[nStageno - 1].TEMPERATURE);
+                        SetValueToGrid2(mondata, keysightController[nStageno - 1].TEMPERATURE);
 
                         //* STEP TIME
                         util.SetValueToLabel(lblStepTime, ConvertMsTimeToString(mondata.STAGETIME));
@@ -416,15 +422,8 @@ namespace DHS.EQUIPMENT2
                 Console.WriteLine(ex.ToString());
             }
         }
-        #endregion
+        #endregion\
 
-        public string ConvertMsTimeToString(ulong time)
-        {
-            string strTime = string.Empty;
-            TimeSpan ts = TimeSpan.FromMilliseconds(time);
-            strTime = ts.ToString(@"hh\:mm\:ss\.fff");
-            return strTime;
-        }
         #endregion
 
         #region Equipment Status

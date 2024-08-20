@@ -58,20 +58,19 @@
             // 
             this.pnlChart.Controls.Add(this.devChart);
             this.pnlChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlChart.Location = new System.Drawing.Point(328, 0);
+            this.pnlChart.Location = new System.Drawing.Point(333, 5);
             this.pnlChart.Name = "pnlChart";
-            this.pnlChart.Padding = new System.Windows.Forms.Padding(10);
-            this.pnlChart.Size = new System.Drawing.Size(1572, 722);
+            this.pnlChart.Size = new System.Drawing.Size(1562, 712);
             this.pnlChart.TabIndex = 57;
             // 
             // devChart
             // 
             this.devChart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.devChart.Legend.LegendID = -1;
-            this.devChart.Location = new System.Drawing.Point(10, 10);
+            this.devChart.Location = new System.Drawing.Point(0, 0);
             this.devChart.Name = "devChart";
             this.devChart.SeriesSerializable = new DevExpress.XtraCharts.Series[0];
-            this.devChart.Size = new System.Drawing.Size(1552, 702);
+            this.devChart.Size = new System.Drawing.Size(1562, 712);
             this.devChart.TabIndex = 0;
             // 
             // pnlFooter
@@ -82,10 +81,10 @@
             this.pnlFooter.Controls.Add(this.chkChannel2);
             this.pnlFooter.Controls.Add(this.chkChannel1);
             this.pnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlFooter.Location = new System.Drawing.Point(0, 722);
+            this.pnlFooter.Location = new System.Drawing.Point(5, 717);
             this.pnlFooter.Name = "pnlFooter";
             this.pnlFooter.Padding = new System.Windows.Forms.Padding(5);
-            this.pnlFooter.Size = new System.Drawing.Size(1900, 108);
+            this.pnlFooter.Size = new System.Drawing.Size(1890, 108);
             this.pnlFooter.TabIndex = 58;
             // 
             // chkChannel4
@@ -151,10 +150,10 @@
             this.pnlLeft.Controls.Add(this.dgvFileList);
             this.pnlLeft.Controls.Add(this.gbStageInfo);
             this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlLeft.Location = new System.Drawing.Point(0, 0);
+            this.pnlLeft.Location = new System.Drawing.Point(5, 5);
             this.pnlLeft.Name = "pnlLeft";
             this.pnlLeft.Padding = new System.Windows.Forms.Padding(10);
-            this.pnlLeft.Size = new System.Drawing.Size(328, 722);
+            this.pnlLeft.Size = new System.Drawing.Size(328, 712);
             this.pnlLeft.TabIndex = 59;
             // 
             // dgvFileList
@@ -171,7 +170,7 @@
             this.dgvFileList.Name = "dgvFileList";
             this.dgvFileList.RowHeadersVisible = false;
             this.dgvFileList.RowTemplate.Height = 23;
-            this.dgvFileList.Size = new System.Drawing.Size(306, 520);
+            this.dgvFileList.Size = new System.Drawing.Size(306, 510);
             this.dgvFileList.TabIndex = 56;
             // 
             // Column1
@@ -290,6 +289,7 @@
             this.Controls.Add(this.pnlLeft);
             this.Controls.Add(this.pnlFooter);
             this.Name = "MeasureChartControl";
+            this.Padding = new System.Windows.Forms.Padding(5);
             this.Size = new System.Drawing.Size(1900, 830);
             this.pnlChart.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.devChart)).EndInit();
