@@ -25,10 +25,12 @@ namespace DHS.EQUIPMENT2.Equipment
         enumSenStatus _enOldSenStatus;
         private string _strConnection;
         private bool _bBTConnected;
+        private string _dtSenDateTime;
         private int _iSenRunCount;
         private string _strServo;
         private string _strStepping1;
         private string _strStepping2;
+        private List<float> _dTemperature = new List<float>();
         #endregion SEN DATA
 
         #region MON DATA
@@ -69,10 +71,12 @@ namespace DHS.EQUIPMENT2.Equipment
         public enumSenStatus OLDSENSTATUS { get => _enOldSenStatus; set => _enOldSenStatus = value; }
         public string CONNECTION { get => _strConnection; set => _strConnection = value; }
         public bool BTCONNECTED { get => _bBTConnected; set => _bBTConnected = value; }
+        public string SENDATETIME { get => _dtSenDateTime; set => _dtSenDateTime = value; }
         public int SENRUNCOUNT { get => _iSenRunCount; set => _iSenRunCount = value; }
         public string SERVO { get => _strServo; set => _strServo = value; }
         public string STEPPING1 { get => _strStepping1; set => _strStepping1 = value; }
         public string STEPPING2 { get => _strStepping2; set => _strStepping2 = value; }
+        public List<float> TEMPERATURE { get => _dTemperature; set => _dTemperature = value; }
         #endregion SENDATA
 
         #region MON DATA

@@ -471,7 +471,8 @@ namespace DHS.EQUIPMENT2.Common
                 return strMonBody.TrimEnd(',');
             }
         }
-        /// middleware와 client프로그램을 통합한 것.
+        
+        #region middleware와 client프로그램을 통합한 것.
         public string SaveMonData(int stageno, string trayid, string recipeinfo, KeysightController keysightcontroller)
         {
             string dir = _Constant.DATA_PATH;
@@ -521,6 +522,49 @@ namespace DHS.EQUIPMENT2.Common
                 return strMonBody.TrimEnd(',');
             }
         }
+        public string SaveSenData(int stageno, string trayid, KeysightController keysightcontroller)
+        {
+            string dir = _Constant.DATA_PATH;
+            string stagename = "STAGE" + (stageno + 1).ToString("D3");
+            dir += System.DateTime.Now.ToString("yyyyMMdd") + "\\" + stagename + "\\";
+            if (Directory.Exists(dir) == false) Directory.CreateDirectory(dir);
+            string filename = dir + stagename + "_SEN_" + DateTime.Now.ToString("yyMMdd-HH") + ".csv";
+            string strMonHeader;
+            string strMonBody = string.Empty;
+
+            //DATETIME, RUNCOUNT, STATUS, OLD STATUS, CONNECTION, SERVO, STEPPING1, STEPPING2, CH1 TEMP ...
+            strMonHeader = "DATETIME,RUNCOUNT,TRAYID,STATUS,OLDSTATUS,CONNECTION,SERVO,STEPPING1,STEPPING2,";
+            for (int nIndex = 0; nIndex < _Constant.ChannelCount; nIndex++)
+                strMonHeader += ",CH" + (nIndex + 1) + " TEMPERATURE";
+            strMonHeader += Environment.NewLine;
+
+            //* DATETIME, RUNCOUNT
+            strMonBody += keysightcontroller.DATETIME + "," + keysightcontroller.SENRUNCOUNT + "," + trayid + ","
+                + keysightcontroller.SENSTATUS + "," + keysightcontroller.OLDSENSTATUS + ","
+                + keysightcontroller.CONNECTION + "," + keysightcontroller.SERVO + ","
+                + keysightcontroller.STEPPING1 + "," + keysightcontroller.STEPPING2 + ",";
+
+            for (int nIndex = 0; nIndex < _Constant.ChannelCount; nIndex++)
+            {
+                //* Temperature
+                strMonBody += keysightcontroller.TEMPERATURE[nIndex] + ",";
+            }
+
+            //strMonBody += Environment.NewLine;
+
+            if (System.IO.File.Exists(filename) == false)
+            {
+                FileWrite(filename, strMonHeader + strMonBody.TrimEnd(',') + Environment.NewLine);
+                return strMonHeader + strMonBody.TrimEnd(',');
+            }
+            else
+            {
+                FileAppend(filename, strMonBody.TrimEnd(','));
+                return strMonBody.TrimEnd(',');
+            }
+        }
+        #endregion middleware와 client프로그램을 통합한 것.
+
         public string SaveMonData3(int stageno, KeysightMonData mondata, TRAYINFO trayinfo)
         {
             string dir = _Constant.DATA_PATH;
@@ -680,10 +724,7 @@ namespace DHS.EQUIPMENT2.Common
                 FileAppend(filename, findata);
             }
         }
-        public void SaveSenData(int stageno, string trayid, ControllerSenData senData)
-        {
-
-        }
+        
         #endregion
 
         #region Save Log

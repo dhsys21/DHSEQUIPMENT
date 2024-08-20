@@ -407,6 +407,7 @@ namespace DHS.EQUIPMENT2
         }
         private void SET_SENDATA(int stageno, string eqstatus, string runcount, string connection, string servo, string stepping1, string stepping2, string temperature)
         {
+            keysightcontrollers[stageno].SENDATETIME = DateTime.Now.ToString("yyyyMMdd HH:mm:ss");
             /// control 보드에서 keysight 장비에 연결이 되어 있는지 확인
             /// 
             if (connection == "01") keysightcontrollers[stageno].BTCONNECTED = true;
@@ -416,8 +417,8 @@ namespace DHS.EQUIPMENT2
             /// 
             keysightcontrollers[stageno].SENRUNCOUNT = GetRunCount(runcount);
 
+            /// SEN STATUS 확인
             /// 키사이트 장비가 동작중인지 확인
-            /// 
             if (eqstatus == "RUN")
             {
                 if (keysightcontrollers[stageno].SENSTATUS == keysightcontrollers[stageno].OLDSENSTATUS)
@@ -450,7 +451,10 @@ namespace DHS.EQUIPMENT2
 
             /// servo, stepping1, stepping2, temperature parsing해서 파일에 저장
             /// 현재(2024 08 06)는 정보가 없음. 
-            ///
+            keysightcontrollers[stageno].SERVO = GetServo(servo);
+            keysightcontrollers[stageno].STEPPING1 = GetStepping(stepping1);
+            keysightcontrollers[stageno].STEPPING2 = GetStepping(stepping2);
+            keysightcontrollers[stageno].TEMPERATURE = GetTemperature(temperature);
 
             if (keysightcontrollers[stageno].SENSTATUS == enumSenStatus.RUN
                             && keysightcontrollers[stageno].OLDSENSTATUS == enumSenStatus.IDL)
@@ -634,6 +638,10 @@ namespace DHS.EQUIPMENT2
             return oTemperature;
         }
         public string GetStepping(string stepping)
+        {
+            return string.Empty;
+        }
+        public string GetServo(string servo)
         {
             return string.Empty;
         }
