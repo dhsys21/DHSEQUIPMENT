@@ -471,6 +471,7 @@ namespace DHS.EQUIPMENT2.Common
                 return strMonBody.TrimEnd(',');
             }
         }
+        /// middleware와 client프로그램을 통합한 것.
         public string SaveMonData(int stageno, string trayid, string recipeinfo, KeysightController keysightcontroller)
         {
             string dir = _Constant.DATA_PATH;
@@ -678,6 +679,10 @@ namespace DHS.EQUIPMENT2.Common
             {
                 FileAppend(filename, findata);
             }
+        }
+        public void SaveSenData(int stageno, string trayid, ControllerSenData senData)
+        {
+
         }
         #endregion
 

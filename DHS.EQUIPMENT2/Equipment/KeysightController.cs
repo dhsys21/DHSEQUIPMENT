@@ -16,23 +16,33 @@ namespace DHS.EQUIPMENT2.Equipment
         private string _strIPaddress;
         private int _iPort1;
         private int _iPort2;
-        private int _iMaxChannel;
+        
         private int _iReconnectCount;
-        private string _strStageName;
         private int _nSendFlag = 0;
-        private int _iRunCount;
+
+        #region SEN DATA
         enumSenStatus _enSenStatus;
         enumSenStatus _enOldSenStatus;
         private string _strConnection;
         private bool _bBTConnected;
+        private int _iSenRunCount;
+        private string _strServo;
+        private string _strStepping1;
+        private string _strStepping2;
+        #endregion SEN DATA
 
-        private string _dtDateTime;
+        #region MON DATA
+        private int _iRunCount;
+        private int _iMaxChannel;
+        private string _strStageName;
         private UInt64 _iTime;
+        private string _dtDateTime;
         private int[] _iStatus = new int[_Constant.ChannelCount];
         private List<float> _dVoltage = new List<float>();
         private List<float> _dCurrent = new List<float>();
         private List<float> _dCapacity = new List<float>();
         private List<float> _dOldCapacity = new List<float>();
+        #endregion MON DATA
 
         public Timer _tmrSend = null;
         bool bSendTimer = false;
@@ -52,27 +62,37 @@ namespace DHS.EQUIPMENT2.Equipment
         public string IPADDRESS { get => _strIPaddress; set => _strIPaddress = value; }
         public int PORT { get => _iPort1; set => _iPort1 = value; }
         public int PORT2 { get => _iPort2; set => _iPort2 = value; }
-        public int MAXCHANNEL { get => _iMaxChannel; set => _iMaxChannel = value; }
-        public string STAGENAME { get => _strStageName; set => _strStageName = value; }
         public int RECONNECTCOUNT { get => _iReconnectCount; set => _iReconnectCount = value; }
+
+        #region SEN DATA
         public enumSenStatus SENSTATUS { get => _enSenStatus; set => _enSenStatus = value; }
         public enumSenStatus OLDSENSTATUS { get => _enOldSenStatus; set => _enOldSenStatus = value; }
-        public int RUNCOUNT { get => _iRunCount; set => _iRunCount = value; }
         public string CONNECTION { get => _strConnection; set => _strConnection = value; }
         public bool BTCONNECTED { get => _bBTConnected; set => _bBTConnected = value; }
+        public int SENRUNCOUNT { get => _iSenRunCount; set => _iSenRunCount = value; }
+        public string SERVO { get => _strServo; set => _strServo = value; }
+        public string STEPPING1 { get => _strStepping1; set => _strStepping1 = value; }
+        public string STEPPING2 { get => _strStepping2; set => _strStepping2 = value; }
+        #endregion SENDATA
 
-        public string DATETIME { get => _dtDateTime; set => _dtDateTime = value; }
+        #region MON DATA
+        public int RUNCOUNT { get => _iRunCount; set => _iRunCount = value; }
+        public int MAXCHANNEL { get => _iMaxChannel; set => _iMaxChannel = value; }
+        public string STAGENAME { get => _strStageName; set => _strStageName = value; }
         public UInt64 STAGETIME { get => _iTime; set => _iTime = value; }
+        public string DATETIME { get => _dtDateTime; set => _dtDateTime = value; }
         public int[] CHANNELSTATUS { get => _iStatus; set => _iStatus = value; }
         public List<float> CHANNELVOLTAGE { get => _dVoltage; set => _dVoltage = value; }
         public List<float> CHANNELCURRENT { get => _dCurrent; set => _dCurrent = value; }
         public List<float> CHANNELCAPACITY { get => _dCapacity; set => _dCapacity = value; }
         public List<float> OLDCHANNELCAPACITY { get => _dOldCapacity; set => _dOldCapacity = value; }
+        #endregion MON DATA
 
         public bool COMMANDRUN { get => _bCommandRun; set => _bCommandRun = value; }
         public string LASTCOMMAND { get => _strLastCommand; set => _strLastCommand = value; }
         public string LASTRESPONSE { get => _strLastResponse; set => _strLastResponse = value; }
         public bool FSET { get => _bFset; set => _bFset = value; }
+        
 
         #region Delegation
         public delegate void ReceiveKeysightResult(int stageno, string msg);

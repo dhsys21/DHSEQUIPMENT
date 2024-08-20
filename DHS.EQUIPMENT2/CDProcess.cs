@@ -107,6 +107,9 @@ namespace DHS.EQUIPMENT2
                 //* Keysight Controller
                 keysightcontrollers[nIndex] = KeysightController.GetInstance(nIndex);
                 keysightcontrollers[nIndex].OnKeysightResult += _KeysightResult;
+
+                //* SEN DATA
+                nSenData[nIndex] = ControllerSenData.GetInstance(nIndex);
             }
 
             //* Measure Info Form
@@ -411,7 +414,7 @@ namespace DHS.EQUIPMENT2
 
             /// runcount 확인
             /// 
-            keysightcontrollers[stageno].RUNCOUNT = GetRunCount(runcount);
+            keysightcontrollers[stageno].SENRUNCOUNT = GetRunCount(runcount);
 
             /// 키사이트 장비가 동작중인지 확인
             /// 
@@ -463,6 +466,8 @@ namespace DHS.EQUIPMENT2
                 /// recipe와 각 recipe별 마지막 데이터 저장
                 //* SaveFinData(stageno, result, nTrayInfo[stageno]);
             }
+
+            util.SaveSenData(stageno, nTrayInfo[stageno].TRAYID, keysightcontrollers[stageno]);
         }
 
         private void SAVE_CAL(int stageno, string caldata)
