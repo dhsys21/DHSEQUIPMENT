@@ -3,6 +3,7 @@ using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraRichEdit.Model;
 using DHS.EQUIPMENT2.Common;
+using DHS.EQUIPMENT2.Equipment;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,6 +22,7 @@ namespace DHS.EQUIPMENT2
     {
         Util util = new Util();
         TRAYINFO[] nTrayInfo = new TRAYINFO[_Constant.ControllerCount];
+        KeysightController[] keysightController = new KeysightController[_Constant.ControllerCount];
 
         private int nStageno;
         private bool bVisible;
@@ -55,7 +57,10 @@ namespace DHS.EQUIPMENT2
             InitializeComponent();
 
             for (int nIndex = 0; nIndex < _Constant.ControllerCount; nIndex++)
+            {
                 nTrayInfo[nIndex] = TRAYINFO.GetInstance(nIndex);
+                keysightController[nIndex] = KeysightController.GetInstance(nIndex);
+            }
 
             //* 결과 컬럼
             nResultColumn = 5;
@@ -212,7 +217,7 @@ namespace DHS.EQUIPMENT2
         #endregion Devexpress Grid Control
 
         #region Get Mon Data Timer
-        private void SetValueToGrid(KeysightMonData mondata, ControllerSenData sendata)
+        private void SetValueToGrid(KeysightController keysController)
         {
             GridControl gc = null;
             int nRow = 0;
@@ -228,6 +233,105 @@ namespace DHS.EQUIPMENT2
                         nRow = nIndex;
                     }
                     else {
+                        gc = gvRight;
+                        nRow = nIndex - _Constant.ChannelCount / 2;
+                    }
+
+                    //* Status
+                    string sMon = string.Empty;
+                    sMon = keysController.CHANNELSTATUS[nIndex].ToString();
+                    int nStatus = util.TryParseInt(sMon, -1);
+                    if (nStatus > 0) strResult = "0"; // OK
+                    else strResult = "2";   // NG
+                    SetValueToGrid(gc, nRow, nResultColumn, "1");
+
+                    //* Voltage Value
+                    string vMon = string.Empty;
+                    vMon = (keysController.CHANNELVOLTAGE[nIndex] * 1000).ToString("F2");
+                    SetValueToGrid(gc, nRow, 1, vMon);
+
+                    //* Current Value
+                    string iMon = string.Empty;
+                    iMon = (keysController.CHANNELCURRENT[nIndex] * 1000).ToString("F1");
+                    SetValueToGrid(gc, nRow, 2, iMon);
+
+                    //* CAPA Value
+                    string cMon = string.Empty;
+                    cMon = (keysController.CHANNELCAPACITY[nIndex] * 1000).ToString("F1");
+                    SetValueToGrid(gc, nRow, 3, cMon);
+
+                    //* TEMPERATURE Value
+                    string tMon = string.Empty;
+                    if (keysController.TEMPERATURE.Count() == 0 || keysController.TEMPERATURE[nIndex] == null) tMon = "0.0";
+                    else tMon = keysController.TEMPERATURE[nIndex].ToString();
+                    SetValueToGrid(gc, nRow, 4, tMon);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
+        private void GetMonDataTimer_TickAsync(object sender, EventArgs e)
+        {
+            try
+            {
+                if (bVisible == true)
+                {
+                    int nStageNo;
+                    nStageNo = util.TryParseInt(cbStageName.Text.Split(' ')[1], 0);
+                    if (nStageNo > 0)
+                    {
+                        //* 파일을 읽지 말고 keysightcontroller[stageno] 정보를 읽어서 표시
+                        //* Recipe 정보 표시
+                        List<Recipe> recipes = nTrayInfo[nStageNo - 1].RECIPE;
+                        if (recipes != null && recipes.Count > 0)
+                        {
+                            lblRecipe.Text = "NO., Type, Current, Voltage, Time" + Environment.NewLine;
+                            for (int nIndex = 0; nIndex < recipes.Count; nIndex++)
+                            {
+                                lblRecipe.Text += recipes[nIndex].orderno + ", " + recipes[nIndex].recipemethod
+                                    + ", " + recipes[nIndex].current + ", " + recipes[nIndex].voltage
+                                    + ", " + recipes[nIndex].time + Environment.NewLine;
+                            }
+                        }
+
+                        if (keysightController[nStageno - 1] == null) return;
+
+                        //* grid control에 값 입력으로 수정해야 함
+                        SetValueToGrid(keysightController[nStageno - 1]);
+
+                        //* STEP TIME
+                        util.SetValueToLabel(lblStepTime, ConvertMsTimeToString(keysightController[nStageno - 1].STAGETIME));
+                    }
+                }
+
+                //SaveMonData();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
+        #region Mon data 저장 파일을 읽어서 표시
+        private void SetValueToGrid2(KeysightMonData mondata, List<float> temperatureList)
+        {
+            GridControl gc = null;
+            int nRow = 0;
+            string strResult = string.Empty;
+            try
+            {
+                for (int nIndex = 0; nIndex < _Constant.ChannelCount; nIndex++)
+                {
+                    /// gvLeft : 1 ~ _Constant.ChannelCount / 2
+                    /// gvRight : _Constant.ChannelCount / 2 + 1 ~ _Constant.Channelcount
+                    if (nIndex < _Constant.ChannelCount / 2)
+                    {
+                        gc = gvLeft;
+                        nRow = nIndex;
+                    }
+                    else
+                    {
                         gc = gvRight;
                         nRow = nIndex - _Constant.ChannelCount / 2;
                     }
@@ -257,8 +361,8 @@ namespace DHS.EQUIPMENT2
 
                     //* TEMPERATURE Value
                     string tMon = string.Empty;
-                    if (sendata.TEMPERATURE.Count() == 0 || sendata.TEMPERATURE[nIndex] == null) tMon = "0.0";
-                    else tMon = sendata.TEMPERATURE[nIndex].ToString();
+                    if (temperatureList.Count() == 0 || temperatureList[nIndex] == null) tMon = "0.0";
+                    else tMon = temperatureList[nIndex].ToString();
                     SetValueToGrid(gc, nRow, 4, tMon);
                 }
             }
@@ -267,7 +371,7 @@ namespace DHS.EQUIPMENT2
                 Console.WriteLine(ex.ToString());
             }
         }
-        private void GetMonDataTimer_TickAsync(object sender, EventArgs e)
+        private void GetMonDataTimer_TickAsync2(object sender, EventArgs e)
         {
             try
             {
@@ -278,8 +382,8 @@ namespace DHS.EQUIPMENT2
                     if (nStageNo > 0)
                     {
                         //* 현재 선택된 MON DATA
+                        //* 파일을 읽지 말고 keysightcontroller[stageno] 정보를 읽어서 표시?
                         KeysightMonData mondata = util.ReadMonData(nStageno, nTrayInfo[nStageno]);// mariadb.GETMONDATAFORCAPACITY(nStageNo);
-                        //ControllerSenData nSenData = mariadb.GETSENDATA(nStageNo);
                         ControllerSenData nSenData = null;
 
                         //* Recipe 정보 표시
@@ -298,7 +402,7 @@ namespace DHS.EQUIPMENT2
                         if (mondata == null) return;
 
                         //* grid control에 값 입력으로 수정해야 함
-                        SetValueToLabel(mondata, nSenData);
+                        SetValueToGrid(mondata, keysightController[nStageno - 1].TEMPERATURE);
 
                         //* STEP TIME
                         util.SetValueToLabel(lblStepTime, ConvertMsTimeToString(mondata.STAGETIME));
@@ -312,7 +416,8 @@ namespace DHS.EQUIPMENT2
                 Console.WriteLine(ex.ToString());
             }
         }
-        
+        #endregion
+
         public string ConvertMsTimeToString(ulong time)
         {
             string strTime = string.Empty;
