@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraGrid;
+﻿using DevExpress.Internal;
+using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraRichEdit.Model;
 using DHS.EQUIPMENT2.Common;
@@ -211,6 +212,61 @@ namespace DHS.EQUIPMENT2
         #endregion Devexpress Grid Control
 
         #region Get Mon Data Timer
+        private void SetValueToGrid(KeysightMonData mondata, ControllerSenData sendata)
+        {
+            GridControl gc = null;
+            int nRow = 0;
+            string strResult = string.Empty;
+            try
+            {
+                for (int nIndex = 0; nIndex < _Constant.ChannelCount; nIndex++)
+                {
+                    /// gvLeft : 1 ~ _Constant.ChannelCount / 2
+                    /// gvRight : _Constant.ChannelCount / 2 + 1 ~ _Constant.Channelcount
+                    if (nIndex < _Constant.ChannelCount / 2) {
+                        gc = gvLeft;
+                        nRow = nIndex;
+                    }
+                    else {
+                        gc = gvRight;
+                        nRow = nIndex - _Constant.ChannelCount / 2;
+                    }
+
+                    //* Status
+                    string sMon = string.Empty;
+                    sMon = mondata.CHANNELSTATUS[nIndex].ToString();
+                    int nStatus = util.TryParseInt(sMon, -1);
+                    if (nStatus > 0) strResult = "0"; // OK
+                    else strResult = "2";   // NG
+                    SetValueToGrid(gc, nRow, nResultColumn, "1");
+
+                    //* Voltage Value
+                    string vMon = string.Empty;
+                    vMon = (mondata.CHANNELVOLTAGE[nIndex] * 1000).ToString("F2");
+                    SetValueToGrid(gc, nRow, 1, vMon);
+
+                    //* Current Value
+                    string iMon = string.Empty;
+                    iMon = (mondata.CHANNELCURRENT[nIndex] * 1000).ToString("F1");
+                    SetValueToGrid(gc, nRow, 2, iMon);
+
+                    //* CAPA Value
+                    string cMon = string.Empty;
+                    cMon = (mondata.CHANNELCAPACITY[nIndex] * 1000).ToString("F1");
+                    SetValueToGrid(gc, nRow, 3, cMon);
+
+                    //* TEMPERATURE Value
+                    string tMon = string.Empty;
+                    if (sendata.TEMPERATURE.Count() == 0 || sendata.TEMPERATURE[nIndex] == null) tMon = "0.0";
+                    else tMon = sendata.TEMPERATURE[nIndex].ToString();
+                    SetValueToGrid(gc, nRow, 4, tMon);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
         private void GetMonDataTimer_TickAsync(object sender, EventArgs e)
         {
             try
@@ -222,9 +278,8 @@ namespace DHS.EQUIPMENT2
                     if (nStageNo > 0)
                     {
                         //* 현재 선택된 MON DATA
-                        //KeysightMonData mondata = mariadb.GETMONDATAFORCAPACITY(nStageNo);
+                        KeysightMonData mondata = util.ReadMonData(nStageno, nTrayInfo[nStageno]);// mariadb.GETMONDATAFORCAPACITY(nStageNo);
                         //ControllerSenData nSenData = mariadb.GETSENDATA(nStageNo);
-                        KeysightMonData mondata = null;
                         ControllerSenData nSenData = null;
 
                         //* Recipe 정보 표시
@@ -243,7 +298,7 @@ namespace DHS.EQUIPMENT2
                         if (mondata == null) return;
 
                         //* grid control에 값 입력으로 수정해야 함
-                        //SetValueToLabel(mondata, nSenData);
+                        SetValueToLabel(mondata, nSenData);
 
                         //* STEP TIME
                         util.SetValueToLabel(lblStepTime, ConvertMsTimeToString(mondata.STAGETIME));

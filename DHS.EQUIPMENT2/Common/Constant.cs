@@ -341,9 +341,9 @@ namespace DHS.EQUIPMENT2.Common
     {
         NOCELL = -1,
         OK = 0,
-        IRNG = 1,
-        OCVNG = 2,
-        VOLTAGENG = 3,
-        CURRENTNG = 4
+        IRNG = 2,
+        OCVNG = 3,
+        VOLTAGENG = 4,
+        CURRENTNG = 5
     }
 }

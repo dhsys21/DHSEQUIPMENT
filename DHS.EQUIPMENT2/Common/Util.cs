@@ -184,7 +184,7 @@ namespace DHS.EQUIPMENT2.Common
             }
             return csvRecords;
         }
-        public string[] ReadCsvFileToString(int nstageno, string filename)
+        public string[] ReadCsvToStrArray(int nstageno, string filename)
         {
             string dir = _Constant.DATA_PATH;
             string stagename = "STAGE" + (nstageno + 1).ToString("D3");
@@ -359,12 +359,34 @@ namespace DHS.EQUIPMENT2.Common
         #endregion
 
         #region CDC Result File
-        public void ReadMonData(int stageno, TRAYINFO trayinfo)
+        public KeysightMonData ReadMonData(int stageno, TRAYINFO trayinfo)
         {
+            KeysightMonData[] monData = null;
             string dir = _Constant.DATA_PATH;
-            string stagename = "STAGE" + (trayinfo.STAGENO + 1).ToString("D3");
-            dir += System.DateTime.Now.ToString("yyyyMMdd") + "\\" + stagename + "\\";
-            string filename = dir + trayinfo.TRAYID + "_MON.csv";
+            string filename = trayinfo.TRAYID + "_MON.csv";
+            string[] monDatas = ReadCsvToStrArray(stageno, filename);
+            int nDataLength = _Constant.ChannelCount * 4 + 1;
+            string[] strDatas = new string[nDataLength];
+            
+
+            for(int nIndex = 0; nIndex < monDatas.Length; nIndex++)
+            {
+                strDatas = monDatas[nIndex].Split(',');
+                if (strDatas.Length != nDataLength)
+                    continue;
+
+                monData[nIndex] = new KeysightMonData();
+                monData[nIndex].DATETIME = strDatas[0];
+                for (int nCh = 0; nCh < _Constant.ChannelCount; nCh++)
+                {
+                    monData[nIndex].CHANNELSTATUS[nCh] = int.Parse(strDatas[4 * nCh + 1]);
+                    monData[nIndex].CHANNELCURRENT[nCh] = float.Parse(strDatas[4 * nCh + 2]);
+                    monData[nIndex].CHANNELVOLTAGE[nCh] = float.Parse(strDatas[4 * nCh + 3]);
+                    monData[nIndex].CHANNELCAPACITY[nCh] = float.Parse(strDatas[4 * nCh + 4]);
+                }
+            }
+
+            return monData[_Constant.ChannelCount - 1];
         }
         public string ConvertMsTimeToString(ulong time)
         {
