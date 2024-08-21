@@ -29,9 +29,9 @@ namespace DHS.EQUIPMENT2
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraCharts.XYDiagram xyDiagram2 = new DevExpress.XtraCharts.XYDiagram();
-            DevExpress.XtraCharts.LineSeriesView lineSeriesView2 = new DevExpress.XtraCharts.LineSeriesView();
-            DevExpress.XtraCharts.ChartTitle chartTitle2 = new DevExpress.XtraCharts.ChartTitle();
+            DevExpress.XtraCharts.XYDiagram xyDiagram1 = new DevExpress.XtraCharts.XYDiagram();
+            DevExpress.XtraCharts.LineSeriesView lineSeriesView1 = new DevExpress.XtraCharts.LineSeriesView();
+            DevExpress.XtraCharts.ChartTitle chartTitle1 = new DevExpress.XtraCharts.ChartTitle();
             this.devChart = new DevExpress.XtraCharts.ChartControl();
             this.pnlLeft = new System.Windows.Forms.Panel();
             this.dgvFileList = new System.Windows.Forms.DataGridView();
@@ -50,8 +50,8 @@ namespace DHS.EQUIPMENT2
             this.chkChannel2 = new System.Windows.Forms.CheckBox();
             this.chkChannel1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.devChart)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(xyDiagram2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(lineSeriesView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(lineSeriesView1)).BeginInit();
             this.pnlLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFileList)).BeginInit();
             this.gbStageInfo.SuspendLayout();
@@ -61,24 +61,26 @@ namespace DHS.EQUIPMENT2
             // devChart
             // 
             this.devChart.CacheToMemory = true;
-            xyDiagram2.AxisX.VisibleInPanesSerializable = "-1";
-            xyDiagram2.AxisY.VisibleInPanesSerializable = "-1";
-            this.devChart.Diagram = xyDiagram2;
+            xyDiagram1.AxisX.VisibleInPanesSerializable = "-1";
+            xyDiagram1.AxisY.VisibleInPanesSerializable = "-1";
+            this.devChart.Diagram = xyDiagram1;
             this.devChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.devChart.Legend.LegendID = -1;
             this.devChart.Location = new System.Drawing.Point(328, 0);
             this.devChart.Name = "devChart";
             this.devChart.SeriesDataMember = "CHANNEL";
             this.devChart.SeriesSerializable = new DevExpress.XtraCharts.Series[0];
             this.devChart.SeriesTemplate.SeriesDataMember = "CHANNEL";
             this.devChart.SeriesTemplate.ValueDataMembersSerializable = "CURRENT";
-            lineSeriesView2.LineMarkerOptions.Kind = DevExpress.XtraCharts.MarkerKind.Square;
-            lineSeriesView2.LineMarkerOptions.Size = 5;
-            this.devChart.SeriesTemplate.View = lineSeriesView2;
+            lineSeriesView1.LineMarkerOptions.Kind = DevExpress.XtraCharts.MarkerKind.Square;
+            lineSeriesView1.LineMarkerOptions.Size = 5;
+            this.devChart.SeriesTemplate.View = lineSeriesView1;
             this.devChart.Size = new System.Drawing.Size(1572, 722);
             this.devChart.TabIndex = 0;
-            chartTitle2.Text = "";
+            chartTitle1.Text = "";
+            chartTitle1.TitleID = 0;
             this.devChart.Titles.AddRange(new DevExpress.XtraCharts.ChartTitle[] {
-            chartTitle2});
+            chartTitle1});
             // 
             // pnlLeft
             // 
@@ -304,8 +306,8 @@ namespace DHS.EQUIPMENT2
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MeasureChartForm";
             this.Text = "MeasureChartForm";
-            ((System.ComponentModel.ISupportInitialize)(xyDiagram2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(lineSeriesView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(lineSeriesView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.devChart)).EndInit();
             this.pnlLeft.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvFileList)).EndInit();

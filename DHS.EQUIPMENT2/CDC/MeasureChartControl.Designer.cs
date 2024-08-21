@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DevExpress.XtraCharts.XYDiagram xyDiagram1 = new DevExpress.XtraCharts.XYDiagram();
+            DevExpress.XtraCharts.LineSeriesView lineSeriesView1 = new DevExpress.XtraCharts.LineSeriesView();
+            DevExpress.XtraCharts.ChartTitle chartTitle1 = new DevExpress.XtraCharts.ChartTitle();
             this.pnlChart = new System.Windows.Forms.Panel();
-            this.devChart = new DevExpress.XtraCharts.ChartControl();
             this.pnlFooter = new System.Windows.Forms.Panel();
             this.chkChannel4 = new System.Windows.Forms.CheckBox();
             this.chkChannel3 = new System.Windows.Forms.CheckBox();
@@ -46,12 +48,15 @@
             this.cbStageRow = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cbStageCol = new System.Windows.Forms.ComboBox();
+            this.devChart = new DevExpress.XtraCharts.ChartControl();
             this.pnlChart.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.devChart)).BeginInit();
             this.pnlFooter.SuspendLayout();
             this.pnlLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFileList)).BeginInit();
             this.gbStageInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.devChart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(lineSeriesView1)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlChart
@@ -62,16 +67,6 @@
             this.pnlChart.Name = "pnlChart";
             this.pnlChart.Size = new System.Drawing.Size(1562, 712);
             this.pnlChart.TabIndex = 57;
-            // 
-            // devChart
-            // 
-            this.devChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.devChart.Legend.LegendID = -1;
-            this.devChart.Location = new System.Drawing.Point(0, 0);
-            this.devChart.Name = "devChart";
-            this.devChart.SeriesSerializable = new DevExpress.XtraCharts.Series[0];
-            this.devChart.Size = new System.Drawing.Size(1562, 712);
-            this.devChart.TabIndex = 0;
             // 
             // pnlFooter
             // 
@@ -172,6 +167,7 @@
             this.dgvFileList.RowTemplate.Height = 23;
             this.dgvFileList.Size = new System.Drawing.Size(306, 510);
             this.dgvFileList.TabIndex = 56;
+            this.dgvFileList.SelectionChanged += new System.EventHandler(this.dgvFileList_SelectionChanged);
             // 
             // Column1
             // 
@@ -232,6 +228,7 @@
             this.cbStageName.Size = new System.Drawing.Size(132, 31);
             this.cbStageName.TabIndex = 28;
             this.cbStageName.Text = "        -";
+            this.cbStageName.SelectedIndexChanged += new System.EventHandler(this.cbStageName_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -281,6 +278,30 @@
             this.cbStageCol.TabIndex = 0;
             this.cbStageCol.Text = "1";
             // 
+            // devChart
+            // 
+            this.devChart.CacheToMemory = true;
+            xyDiagram1.AxisX.VisibleInPanesSerializable = "-1";
+            xyDiagram1.AxisY.VisibleInPanesSerializable = "-1";
+            this.devChart.Diagram = xyDiagram1;
+            this.devChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.devChart.Legend.LegendID = -1;
+            this.devChart.Location = new System.Drawing.Point(0, 0);
+            this.devChart.Name = "devChart";
+            this.devChart.SeriesDataMember = "CHANNEL";
+            this.devChart.SeriesSerializable = new DevExpress.XtraCharts.Series[0];
+            this.devChart.SeriesTemplate.SeriesDataMember = "CHANNEL";
+            this.devChart.SeriesTemplate.ValueDataMembersSerializable = "CURRENT";
+            lineSeriesView1.LineMarkerOptions.Kind = DevExpress.XtraCharts.MarkerKind.Square;
+            lineSeriesView1.LineMarkerOptions.Size = 5;
+            this.devChart.SeriesTemplate.View = lineSeriesView1;
+            this.devChart.Size = new System.Drawing.Size(1562, 712);
+            this.devChart.TabIndex = 1;
+            chartTitle1.Text = "";
+            chartTitle1.TitleID = 0;
+            this.devChart.Titles.AddRange(new DevExpress.XtraCharts.ChartTitle[] {
+            chartTitle1});
+            // 
             // MeasureChartControl
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -292,11 +313,13 @@
             this.Padding = new System.Windows.Forms.Padding(5);
             this.Size = new System.Drawing.Size(1900, 830);
             this.pnlChart.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.devChart)).EndInit();
             this.pnlFooter.ResumeLayout(false);
             this.pnlLeft.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvFileList)).EndInit();
             this.gbStageInfo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(lineSeriesView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.devChart)).EndInit();
             this.ResumeLayout(false);
 
         }

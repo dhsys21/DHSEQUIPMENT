@@ -120,35 +120,43 @@ namespace DHS.EQUIPMENT2
             DataValue dv = new DataValue();
             if (System.IO.File.Exists(filename) == false) return nDataValue;
 
-            string[] csvRecords = File.ReadAllLines(filename);
-            for (int i = 0; i < _Constant.ChannelCount; i++)
-                nDataValue[i] = new List<DataValue>();
-
-            int nTime = 0;
-            int nVerify = _Constant.ChannelCount * 4 + 3;
-            foreach (string d in csvRecords)
+            try
             {
-                string[] split = d.Split(',');
-                if (split.Length == nVerify)
-                {
-                    if (split[0] != "DATETIME")
-                    {
-                        nTime += 1;
-                        for (int nIndex = 0; nIndex < _Constant.ChannelCount; nIndex++)
-                        {
-                            dv = new DataValue();
-                            dv.Channel = (nIndex + 1);
-                            dv.Time = nTime;
-                            dv.Status = util.TryParseInt(split[nIndex * 4 + 3], 0);
-                            dv.Current = util.TryParseDouble(split[nIndex * 4 + 4], 0);
-                            dv.Voltage = util.TryParseDouble(split[nIndex * 4 + 5], 0);
-                            dv.Capacity = util.TryParseDouble(split[nIndex * 4 + 6], 0);
+                string[] csvRecords = File.ReadAllLines(filename);
+                for (int i = 0; i < _Constant.ChannelCount; i++)
+                    nDataValue[i] = new List<DataValue>();
 
-                            nDataValue[dv.Channel - 1].Add(dv);
+                int nTime = 0;
+                int nVerify = _Constant.ChannelCount * 4 + 1;
+                foreach (string d in csvRecords)
+                {
+                    string[] split = d.Split(',');
+                    if (split.Length == nVerify)
+                    {
+                        if (split[0] != "DATETIME")
+                        {
+                            nTime += 1;
+                            for (int nIndex = 0; nIndex < _Constant.ChannelCount; nIndex++)
+                            {
+                                dv = new DataValue();
+                                dv.Channel = (nIndex + 1);
+                                dv.Time = nTime;
+                                dv.Status = util.TryParseInt(split[nIndex * 4 + 1], 0);
+                                dv.Current = util.TryParseDouble(split[nIndex * 4 + 2], 0);
+                                dv.Voltage = util.TryParseDouble(split[nIndex * 4 + 3], 0);
+                                dv.Capacity = util.TryParseDouble(split[nIndex * 4 + 4], 0);
+
+                                nDataValue[dv.Channel - 1].Add(dv);
+                            }
                         }
                     }
                 }
             }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            
             return nDataValue;
         }
         private List<DataValue>[] ReadValue(int stageno, string filename)
@@ -586,11 +594,10 @@ namespace DHS.EQUIPMENT2
 
                 filename = dgv.Rows[curRow].Cells[1].Value.ToString();
                 DrawChartWithFileAsync(filename);
-                //nDataValue = ReadValue(filename);
-                //DrawChart(nDataValue);
-
             }
         }
         #endregion
+
+        
     }
 }
